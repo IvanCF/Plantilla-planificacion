@@ -21,8 +21,8 @@
 \pertenenciaCoDirector{}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{-}
+\empresaCliente{Emprendimiento Personal}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -114,23 +114,8 @@ El presente proyecto se destaca especialmente por centralizar y unificar resulta
 El sistema de monitoreo contará de dos formas de acceso: la primera es vía red local y la segunda vía internet desde cualquier dispositivo capaz de conectarse a la red mediante un navegador.
 
 El sistema de monitoreo que se propone deberá seguir funcionando así exista una desconexión a internet, dado que si existe algún corte de salida a internet todos los datos seguirán funcionando vía red local y la próxima vez que se conecte a internet actualizará el estado de las variables en el módulo remoto para el acceso externo, Esto lo diferencia de otros sistemas similares porque la mayoría están basados en la recolección de datos con envió directo a la nube pero si existiera un corte de red el sistema dejaría de funcionar. En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa los componentes principales que involucra el proyecto.
---------------------------------
 
-
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
-
-\begin{itemize}
-\item ¿Cómo se vincula este proyecto con la misión de la organización?
-\item ¿Cómo se inserta este proyecto en el modelo de negocio de la organización?
-\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-\item ¿En qué estado del ciclo de vida está el producto que se desea reemplazar o mejorar?
-\item ¿Cuales son las necesidades que debe satisfacer?
-\item ¿Por dónde pasa la innovación?
-\end{itemize}
-
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema }y una frase como la siguiente: ``En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''. Luego recién más abajo de haber puesto esta frase se pone la figura. La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
-
-\vspace{25px}
+\vspace{20px}
 
 \begin{figure}[htpb]
 \centering 
@@ -139,29 +124,43 @@ La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en
 \label{fig:diagBloques}
 \end{figure}
 
-\vspace{25px}
-
-El tamaño de la tipografía en la figura debe ser adecuado para que NO pase lo que ocurre acá, donde el lector debe esforzarse para poder leer el texto. Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama.
+%\vspace{20px}
 \end{consigna}
 
+\section{Modelo canvas del negocio del proyecto}
+\begin{consigna}{red}
+El Business Model Canvas, traducido como lienzo de modelo de negocio, es una plantilla de gestión estratégica para el desarrollo de nuevos modelos de negocio y puede resultarles útil para conopcer mas a detalle el esquema de negocio. En la Figura \ref{fig:diagCanvas}
+es un gráfico visual con elementos que describen la propuesta de negocio del proyecto.
+\vspace{25px}
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=0.75\textwidth]{./Figuras/diagCanvas.png}
+\caption{Diagrama del nodelo canvas del negocio}
+\label{fig:diagCanvas}
+\end{figure}
+
+\begin{enumerate}
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados con...
+\end{enumerate}
+\end{consigna}
 
 \section{Identificación y análisis de los interesados}
 \label{sec:interesados}
-
 \begin{consigna}{red} 
-Nota: (borrar esto y todas las consignas en color rojo antes de entregar este documento).
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos.
- 
-Si se considera que una persona cumple dos o más roles, entonces sólo dejarla en el rol más importante. Por ejemplo:
-
-\begin{itemize}
-\item Si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente.
-\item Si una persona es el Responsable, no debe ser colocado también como Miembro del equipo.
-\end{itemize}
-
-Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por ejemplo.
-
+En la siguiente tabla se muestra de  forma resumida los stakeholders del presente proyecto.
 \begin{table}[ht]
 %\caption{Identificación de los interesados}
 %\label{tab:interesados}
@@ -169,32 +168,25 @@ Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por e
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+Cliente       & \clientename      &\empclientename	&     -   	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
+Colaboradores &  Docentes y Consultores de hardware y software IOT. &      LSE - FIUBA 	&      Docente 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director	Trabajo final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Usuario final & Personas de clase media y alta.\newline    
+				Empresas del sector hotelero, salud y cualquier sector comercial. &    -        & Propietario/Jefe \\ \hline
+
+
 \end{tabularx}
 \end{table}
 
-El Director suele ser uno de los Orientadores.
+Principales características de cada interesado.
 
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Sería deseable listar a continuación de la tabla las principales características de cada interesado.
- 
-Por ejemplo:
 \begin{itemize}
-\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
-\item Orientador: María Gómez, nos va a poder ayudar mucho con la gestión de impuestos.
+\item Cliente: No existe por el momento un cliente directo dado que es un emprendimiento personal.
+\item Responsable: Daniel Iván Cruz Flores, también es el único personal del equipo de desarrollo.
+\item Colaboradores: Cada unos de los docentes de la especialización en IOT del LSE - FIUBA.
+\item Orientador: \supname, nos va a poder ayudar mucho con la gestión y formulación del proyecto.
+\item Usuario Final: Hogares o empresas que desean tener información detalla para gestionar el consumo energético y contar con algunas características de confort.
 \end{itemize}
 
 \end{consigna}
@@ -213,6 +205,9 @@ El proposito de este proyecto es diseñar y desarrollar un sistema informático 
 \label{sec:alcance}
 
 \begin{consigna}{red}
+
+El sistema a desarrollar contará con componentes esenciales de hardware y software los cuales será necesario desarrollar. A continuación se detalla brevemente cada componente.
+
 ¿Qué se incluye y que no se incluye en este proyecto?
 
 Se refiere al trabajo a hacer para entregar el producto o resultado especificado. 
