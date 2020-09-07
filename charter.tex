@@ -217,19 +217,16 @@ es un gráfico visual con elementos que describen la propuesta de negocio del pr
 \end{figure}
 
 \begin{enumerate}
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
-\item Grupo de requerimientos asociados con...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+\item En desarrollo...
+
 \end{enumerate}
 \end{consigna}
 
@@ -412,22 +409,57 @@ Para la verificación del funcionamiento del sistema IOT a implementar se consid
 \label{sec:wbs}
 
 \begin{consigna}{red}
-Se recomienda mostrar el WBS mediante una lista indexada:
+Las tareas se muestras agrupados para una mejor comprensión:
 
 \begin{enumerate}
-\item Grupo de tareas 1
+\item Búsqueda de material bibliográfico. (55 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
+	\item Búsqueda de soluciones similares en el mercado. (5 hs)
+	\item Búsqueda de códigos fuente similares a los que se usará. (10 hs)
+	\item Búsqueda de todos los componentes electrónicos a usar. (10 hs)
+	\item Estudiar la forma de integración de componentes a la red. (10 hs)
+	\item Estudiar cómo funciona cada uno de los componentes. (20 hs)
 	\end{enumerate}
-\item Grupo de tareas 2
+\item Adquisición de componentes. (16 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
+	\item Cotizar los costos de cada componente electrónico con los proveedores. (8 hs)
+	\item Realizar los pedidos a proveedores. (4 hs)
+	\item Realizar un informe de costos de los componentes adquiridos (4 hs)
 	\end{enumerate}
-	\item Grupo de tareas 3
+\item Diseño y configuración de Red Local. (16 hs)
+	\begin{enumerate}
+	\item Instalación del Modem/router en el lugar mas adecuado. (2 hs)
+	\item Instalación del Access Point en el lugar mas adecuado. (3 hs)
+	\item Configuración interna del Modem/Router y el Access Point. (4 hs)
+	\item Verificación e instalación de los puntos de donde se conectaran los módulos sensores de muestreo. (5 hs)
+	\item Realizar un informe de la configuración de red local instalada. (2 hs)
+	\end{enumerate}
+\item Desarrollo del Modulo Principal
+	\begin{enumerate}
+	\item Instalación del sistema operativo en la Raspberry Pi (1 hs)
+	\item Instalación y configuración del servidor web (3 hs)
+	\item Instalación y configuración de Python 3 (2 hs)
+	\item Instalación y configuración del Broker Local (4 hs)
+	\item Creación del programa para leer datos que llegan al broker y enviarlo a la base de datos. (5 hs)
+	\item Creación del programa para verificar constantemente el acceso a internet (5 hs)
+	\item Creación del programa para leer datos que llegan al broker y replicarlos a la nube. (10 hs)
+	\item Creación y configuración del script lanzador que iniciará automáticamente los programas al encender el modulo. (3 hs)
+	\item Testeo del funcionamiento y conexión a la red inicial del modulo. (5 hs)
+	\item Diseño y creación de la base de datos. (10 hs)
+	\item Diseño y maquetación de la aplicación web principal. (35 hs)
+	\item Desarrollo de todas las funcionalidades backend de la aplicación. (40 hs)
+	\item Integración de las funcionalidades backend con el fronted de la aplicación web (30 hs)
+	\item Testeo de funcionamiento de la aplicación web.  (5 hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\end{enumerate}
+\item Desarrollo del Modulo Replica
 	\begin{enumerate}
 	\item Tarea 1 (tantas hs)
 	\item Tarea 2 (tantas hs)
@@ -435,6 +467,38 @@ Se recomienda mostrar el WBS mediante una lista indexada:
 	\item Tarea 4 (tantas hs)
 	\item Tarea 5 (tantas hs)
 	\end{enumerate}
+\item Desarrollo del Modulo de Consumo
+	\begin{enumerate}
+	\item Tarea 1 (tantas hs)
+	\item Tarea 2 (tantas hs)
+	\item Tarea 3 (tantas hs)
+	\item Tarea 4 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\end{enumerate}
+\item Desarrollo del Modulo Temperatura
+	\begin{enumerate}
+	\item Tarea 1 (tantas hs)
+	\item Tarea 2 (tantas hs)
+	\item Tarea 3 (tantas hs)
+	\item Tarea 4 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\end{enumerate}
+\item Desarrollo del Modulo Actuador
+	\begin{enumerate}
+	\item Tarea 1 (tantas hs)
+	\item Tarea 2 (tantas hs)
+	\item Tarea 3 (tantas hs)
+	\item Tarea 4 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\end{enumerate}
+\item Verificación y testeo del sistema
+	\begin{enumerate}
+	\item Tarea 1 (tantas hs)
+	\item Tarea 2 (tantas hs)
+	\item Tarea 3 (tantas hs)
+	\item Tarea 4 (tantas hs)
+	\item Tarea 5 (tantas hs)
+	\end{enumerate}	
 \end{enumerate}
 
 Cantidad total de horas: (tantas hs)
