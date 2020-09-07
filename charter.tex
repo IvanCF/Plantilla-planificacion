@@ -124,7 +124,83 @@ El sistema de monitoreo que se propone deberá seguir funcionando así exista un
 \label{fig:diagBloques}
 \end{figure}
 
-%\vspace{20px}
+\vspace{20px}
+
+El sistema IOT a desarrollar contará con componentes esenciales de hardware y software los cuales será necesario desarrollar para poder verificar el funcionamiento del mismo según la idean planteada. 
+
+A continuación se detalla brevemente cada componente que comprende el presente proyecto.
+
+a) MÓDULO PRINCIPAL: Unidad Central Local.
+\begin{itemize}
+\item Hardware: Raspberry Pi 4.
+\item SO: Raspbian.
+\item Servidor web: Apache.
+\item Base de Datos: MySql
+\item Lenguajes Backend: Python, PHP 7.
+\item Lenguajes Frontend: HTML5, CSS – Bootstrap 4 y JavaScript.
+\item Broker MQTT: Eclipse Mosquitto.
+\item Interfaz - Monitor: Pantalla Monitor/Pantalla Touch.
+\item Importancia: Este es el módulo principal y el más complejo a desarrollar, es donde se podrá observar un dashboard (resumen) del sistema de control y monitoreo para su acceso en red local. La interfaz gráfica mostrará gráficos estadísticos así como un historial de las lecturas de los sensores y el estado de los mismos.
+\end{itemize}
+
+b) MÓDULO REPLICA: Unidad Remota.
+\begin{itemize}
+\item Servidor web: Apache (Hosting o nube).
+\item Base de Datos: MySql.
+\item Lenguajes Backend: PHP 7 y JavaScript.
+\item Lenguajes FrontEnd: HTML5 y CSS – Bootstrap 4.
+\item Importancia: Este es una réplica del módulo principal pero en la nube donde se podrá observar un dashboard del sistema de control y monitoreo pero para el acceso remoto.
+\end{itemize}
+
+
+c) MÓDULO CONSUMO: Para medir Consumo Energético.
+\begin{itemize}
+\item Hardware Base: NodeMCU esp8266
+\item Lenguaje: Arduino.
+\item Protocolo Comunicación: MQTT.
+\item Sensor: Corriente AC max 100A no invasivo.
+\item Medio Transmisión: Wireless.
+\item Cantidad: 2
+\item Objetos Estudio: Tv y Refrigerador.
+\item Importancia: Este módulo permite recoger muestras del valor del consumo diario para poder almacenarlos en la base de datos en el módulo principal, permitiendo estimar costos de consumo mensual; información relevante para el usuario porque permitirá saber el consumo detallado de los dispositivos de estudio.
+\end{itemize}
+
+d) MÓDULO TEMPERATURA: Para medir temperatura - Confort.
+\begin{itemize}
+\item Hardware Base: NodeMCU esp8266
+\item Lenguaje: Arduino
+\item Protocolo Comunicación: MQTT.
+\item Sensor: Temperatura ambiente.
+\item Medio Transmisión: Wireless.
+\item Cantidad: 2
+\item Objetos de Estudio: Sala y una oficina.
+\item Importancia: Este módulo permite recoger muestras del valor de la temperatura en determinados ambientes de estudio, dichos valores pueden ser almacenados y usados para estudio de patrones de variación de temperatura por horarios.
+\end{itemize}
+
+e) MÓDULO ACTUADOR: Para Control actuador - Confort.
+\begin{itemize}
+\item Hardware Base: NodeMCU esp8266
+\item Lenguaje: Arduino.
+\item Protocolo Comunicación: MQTT.
+\item Actuador: Relay de un canal.
+\item Medio Transmisión: Wireless.
+\item Cantidad: 2
+\item Objetos de Estudio: Control de Ventiladores (Según datos del Modulo Temperatura).
+\item Importancia: Este actuador es un Modulo complementario del "Modulo Temperatura"; permitirá saber el historial de uso y demanda de uso de ventiladores; patrones que pueden ser tema de estudio relacionado al consumo en aplicaciones futuras.
+\end{itemize}
+
+f) MÓDULO INTELIGENTE: Para medir y Controlar de forma Inteligente - confort y salud.
+\begin{itemize}
+\item Hardware Base: Raspberry Pi/Esp32 Cam/Otro.
+\item Lenguaje: Arduino y Python.
+\item Protocolo Comunicación: MQTT.
+\item Actuador: Real-Time Face Recognition.
+\item Sensor: Lectura de temperatura corporal.
+\item Medio Transmisión: Wireless.
+\item Cantidad: 1
+\item Objeto de Estudio: Seguimiento de posibles casos de fiebre.
+\item Importancia: Este módulo es el segundo módulo complejo a desarrollar por la forma a implementar para la identificación del individuo y la relación de lecturas de temperatura. Con los datos almacenados se puede usar para un estudio de patrones respecto de fechas y estaciones de fiebre. Por el momento se considera en este módulo el tema: "Temperatura corporal", pero para trabajos futuros se puede extender para medir variables como pulso cardiaco u otros.
+\end{itemize}
 \end{consigna}
 
 \section{Modelo canvas del negocio del proyecto}
@@ -203,21 +279,19 @@ El proposito de este proyecto es diseñar y desarrollar un sistema informático 
 
 \section{2. Alcance del proyecto}
 \label{sec:alcance}
-
 \begin{consigna}{red}
+Por la cantidad de componentes detallados anteriormente se debe estimar el alcance a considerar para esta primera etapa del proyecto. Se considera un alcance de: 
+\begin{itemize}
+\item Diseño y desarrollo del Módulo principal.
+\item Diseño y desarrollo del Módulo Replica.
+\item Diseño y desarrollo del Módulo Consumo.
+\item Diseño y desarrollo del Módulo Temperatura.
+\item Diseño y desarrollo del Módulo Actuador.
+\end{itemize}
 
-El sistema a desarrollar contará con componentes esenciales de hardware y software los cuales será necesario desarrollar. A continuación se detalla brevemente cada componente.
-
-¿Qué se incluye y que no se incluye en este proyecto?
-
-Se refiere al trabajo a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto.
-
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
+El presente proyecto no incluye el desarrollo del ``Módulo Inteligente'' y futuros módulos de interacción por voz Humano - Computador, dichos módulos serán temas de desarrollo en trabajos futuros.
 
 \end{consigna}
-
 
 \section{3. Supuestos del proyecto}
 \label{sec:supuestos}
@@ -235,38 +309,79 @@ Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y
 
 \section{4. Requerimientos}
 \label{sec:requerimientos}
-
 \begin{consigna}{red}
-Los requerimientos deben numerarse y de ser posible agruparlos por afinidad:
+Los requerimientos se enumeran agrupados por afinidad:
 
 \begin{enumerate}
-\item Grupo de requerimientos asociados con...
+\item Grupo de requerimientos asociados al "Módulo Principal''.
 	\begin{enumerate}
-	\item Requerimiento 1
-	\item Requerimiento 2
-	\item Requerimiento 3 (prioridad menor)
+	\item El modulo debe tener instalado un servidor web.
+	\item El modulo debe tener instalado un gestor de base de datos MySql.
+	\item El modulo debe tener instalado un broker.
+	\item El modulo debe tener instalado Pyhton 3.x.
+	\item El modulo debe tener un programa ejecutándose en segundo plano para detectar los valores que llegan al broker y enviarlo a la base de datos local.
+	\item El modulo debe tener ejecutándose en segundo plano un programa que replicará hacia la nube los datos que reciba el broker local mientras tenga acceso a internet.
+	\item El modulo al ser encendido debe iniciar automáticamente el servidor web, el gestor de base de datos, el broker, el programa de captura de datos para el envio a la base de datos y el programa que hace la replica a la nube.
+	\item El modulo debe tener una aplicación web para mostrar de forma amigable los datos capturados para permitir la gestión, control y monitoreo del sistema IOT.
+	\item La aplicación debe leer los datos que llegan al broker y mostrarlo vía web para comprobar que existe comunicación constante con el resto de módulos del sistema.
+	\item La aplicación debe reportar los datos que llegan la base de datos mediante AJAX (Asynchronous JavaScript and XML).
+	\item La aplicación debe mostrar información resumida mediante gráficos estadísticos y tablas detalladas de los sensores y módulos del sistema.
+	\item La aplicación debe permitir generar reportes detallados en PDF de los datos capturados en la base de datos.
+	\item La aplicación debe permitir el acceso de 2 tipos de usuarios: el administrador con permisos totales del sistema y el usuario que solo desea ver información.
+	\item La aplicación web deberá seguir funcionando correctamente si existiera algún corte de acceso a internet.
+	\item La aplicación debe contar con un protector de pantalla para cuando no se este interactuando (prioridad menor).
 	\end{enumerate}
-\item Grupo de requerimientos asociados con...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\item Grupo de requerimientos asociados al "Módulo Replica''.
 	\begin{enumerate}
-	\item Requerimiento 1
-	\item Requerimiento 2 (prioridad menor)
+	\item El modulo debe tener una aplicación web para mostrar de forma amigable los datos replicados del sistema IOT.
+	\item La aplicación web estará almacenada en un servicio de servidor web remoto (Hosting).
+	\item La aplicación web debe leer todos los datos que llegan al broker remoto de replica.
+	\item La aplicación web debe ser estructurada con la característica de adaptabilidad para su acceso desde dispositivos portátiles.
+	\item La aplicación deberá mostrar un mensaje de alerta cuando el sistema principal local perdió conexión y no puede enviar los valores en tiempo real.
+	\item La aplicación debe permitir el acceso de 2 tipos de usuarios: el administrador con permisos totales del sistema y el usuario que solo desea ver información.
 	\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Grupo de requerimientos asociados al "Módulo Consumo''.
+	\begin{enumerate}
+	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
+	\item El modulo debe leer cada 5 segundos los datos del sensor de corriente.
+	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El modulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el broker del Modulo principal central.
+	\item El modulo debe estar funcionando 24/7.
+	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación (prioridad menor).
+	\end{enumerate}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\item Grupo de requerimientos asociados al "Módulo Temperatura''.
+	\begin{enumerate}
+	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
+	\item El modulo debe leer cada 2 segundos los datos del sensor de temperatura.
+	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El modulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el broker del Modulo principal central.
+	\item El modulo debe estar funcionando 24/7.
+	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
+	\end{enumerate}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Grupo de requerimientos asociados al "Módulo Actuador''.
+	\begin{enumerate}
+	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
+		\item El modulo debe recibir datos mediante el protocolo MQTT desde el broker del Modulo principal central.
+	\item El modulo debe leer cada 1 segundos los datos que se le envían desde el modulo principal.
+	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El modulo debe estar funcionando 24/7.
+	\item El modulo deberá estar conectado a un ventilador y actuara mediante un rele para su encendido o apagado del mismo.
+	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
+	\end{enumerate}
+
+\item Grupo de requerimientos asociados a la ''Red Local''.
+	\begin{enumerate}
+	\item La red local debe estar configurado con direcciones Ip estáticas.
+	\item La red local debe estar configurado con un Access Point para garantizar la fácil conexión entre módulos del sistema IOT así como extender el rango de la señal wifi.
+	\item El Access Point de la red debe estar configurado en un canal de comunicación que no tenga solapamiento de canales wifi.
+	\item La conexión a la red del pc del usuario administrador y de la pantalla monitor debe estar conectado vía cable Ethernet(prioridad menor).
+	\end{enumerate}
+
 \end{enumerate}
-
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
-
-De ser posible indicar cómo se obtuvieron cada uno de los requerimientos 
-
-Indicar claramente cuál es la prioridad entre los distintos requerimientos. 
-
-No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-\item Ser breve y conciso (nadie lee cosas largas). 
-\item Ser específico: no dejar lugar a confusiones.
-\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
 
 \end{consigna}
 
@@ -281,13 +396,13 @@ Descripción: En esta sección se deben incluir las historias de usuarios y su p
 \label{sec:entregables}
 
 \begin{consigna}{red}
-Cosas como: 
+Para la verificación del funcionamiento del sistema IOT a implementar se considera los siguientes recursos entregables:
 \begin{itemize}
-\item Manual de uso
-\item Diagrama esquemático
-\item Código fuente
-\item Diagrama de instalación
-\item Informe final
+\item Manual de uso.
+\item Diagrama esquemático.
+\item Diagrama de los componentes que forman el sistema.
+\item Vídeo demostrativo de las pruebas de funcionamiento.
+\item Informe final.
 
 \end{itemize}
 
