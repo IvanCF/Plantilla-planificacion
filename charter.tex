@@ -410,100 +410,126 @@ Para la verificación del funcionamiento del sistema IOT a implementar se consid
 
 \begin{consigna}{red}
 Las tareas se muestras agrupados para una mejor comprensión:
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{enumerate}
-\item Búsqueda de material bibliográfico. (55 hs)
+\item Búsqueda de material bibliográfico. (58 hs)
 	\begin{enumerate}
 	\item Búsqueda de soluciones similares en el mercado. (5 hs)
 	\item Búsqueda de códigos fuente similares a los que se usará. (10 hs)
 	\item Búsqueda de todos los componentes electrónicos a usar. (10 hs)
 	\item Estudiar la forma de integración de componentes a la red. (10 hs)
-	\item Estudiar cómo funciona cada uno de los componentes. (20 hs)
+	\item Estudiar cómo funciona cada uno de los componentes. (15 hs)
+	\item Realizar un informe resumen con la lista de componentes, aspectos de red y configuraciones básicas a usar. (8 hs)
 	\end{enumerate}
-\item Adquisición de componentes. (16 hs)
+\item Adquisición de componentes. (20 hs)
 	\begin{enumerate}
 	\item Cotizar los costos de cada componente electrónico con los proveedores. (8 hs)
 	\item Realizar los pedidos a proveedores. (4 hs)
-	\item Realizar un informe de costos de los componentes adquiridos (4 hs)
+	\item Realizar un informe de costos de los componentes adquiridos (8 hs)
 	\end{enumerate}
-\item Diseño y configuración de Red Local. (16 hs)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Diseño y configuración de Red Local. (24 hs)
 	\begin{enumerate}
-	\item Instalación del Modem/router en el lugar mas adecuado. (2 hs)
-	\item Instalación del Access Point en el lugar mas adecuado. (3 hs)
+	\item Instalación del Modem/router en el lugar mas adecuado. (3 hs)
+	\item Instalación del Access Point en el lugar mas adecuado. (4 hs)
 	\item Configuración interna del Modem/Router y el Access Point. (4 hs)
 	\item Verificación e instalación de los puntos de donde se conectaran los módulos sensores de muestreo. (5 hs)
-	\item Realizar un informe de la configuración de red local instalada. (2 hs)
+	\item Realizar un informe de la configuración de red local instalada. (8 hs)
 	\end{enumerate}
-\item Desarrollo del Modulo Principal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del Modulo Principal. (252 hs)
 	\begin{enumerate}
-	\item Instalación del sistema operativo en la Raspberry Pi (1 hs)
-	\item Instalación y configuración del servidor web (3 hs)
+	\item Instalación del sistema operativo en la Raspberry Pi (2 hs)
+	\item Instalación y configuración del servidor web (5 hs)
 	\item Instalación y configuración de Python 3 (2 hs)
-	\item Instalación y configuración del Broker Local (4 hs)
+	\item Instalación y configuración del Broker Local (5 hs)
 	\item Creación del programa para leer datos que llegan al broker y enviarlo a la base de datos. (5 hs)
 	\item Creación del programa para verificar constantemente el acceso a internet (5 hs)
-	\item Creación del programa para leer datos que llegan al broker y replicarlos a la nube. (10 hs)
-	\item Creación y configuración del script lanzador que iniciará automáticamente los programas al encender el modulo. (3 hs)
-	\item Testeo del funcionamiento y conexión a la red inicial del modulo. (5 hs)
+	\item Creación del programa para leer datos que llegan al broker y replicarlos a la nube. (15 hs)
+	\item Creación y configuración del script lanzador que iniciará automáticamente los programas al encender el modulo. (10 hs)
+	\item Testeo del funcionamiento y conexión a la red inicial del modulo. (10 hs)
 	\item Diseño y creación de la base de datos. (10 hs)
 	\item Diseño y maquetación de la aplicación web principal. (35 hs)
 	\item Desarrollo de todas las funcionalidades backend de la aplicación. (40 hs)
-	\item Integración de las funcionalidades backend con el fronted de la aplicación web (30 hs)
-	\item Testeo de funcionamiento de la aplicación web.  (5 hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Integración de todas las funcionalidades backend con el fronted de la aplicación web (30 hs)
+	\item Creación de los tipos de reportes que ofrecerá la aplicación. (20 hs)
+	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (10 hs)
+	\item Testeo y depuración del funcionamiento de la aplicación web en el pc del administrador. (5 hs)
+	\item Testeo y depuración del funcionamiento de la aplicación web en el monitor informativo. (5 hs)
+	\item Testeo y depuración del funcionamiento del sistema del modulo principal en situaciones de corte de internet. (30 hs) 
+	\item Realizar un informe resumen de las características del modulo, aspectos de red, configuraciones a usar, credenciales de acceso del usuario root, versiones del software, credenciales de acceso a la administración a la base de datos y a la aplicación web. (8 hs)
 	\end{enumerate}
-\item Desarrollo del Modulo Replica
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del Modulo Replica. (143 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Creación y configuración del Broker remoto (5 hs)
+	\item Integración del Broker remoto con el modulo principal local para las replicas(10 hs)
+	\item verificación y testeo de enlace del broker local con el broker remoto. (10 hs)
+	\item Creación de la base de datos replica en la nube. (5 hs) 
+	\item Adaptación de la aplicación web local para su funcionamiento en remoto  (40 hs)
+	\item Configuración de recepción de datos del broker remoto hacia la aplicación en nube.  (20 hs)
+	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (10 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación web desde el pc del administrador. (5 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación en diferentes dispositivos portátiles. (30 hs)
+	\item Realizar un informe resumen de las configuraciones a usar y credenciales de acceso a la cuenta de administración. (8 hs)
 	\end{enumerate}
-\item Desarrollo del Modulo de Consumo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del Modulo de Consumo. (73 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Construcción del modulo e integración de componentes, sensor de corriente con placa Esp8266. (15 hs)
+	\item Creación del programa de lectura para el microcontrolador. (15 hs)
+	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
+	\item Testeo y depuración del envió de datos al modulo principal de la red local. (10 hs)
+	\item Verificación y formateo de datos capturados por el sensor para su envió al modulo central. (10 hs)
+	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (8 hs)
 	\end{enumerate}
-\item Desarrollo del Modulo Temperatura
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del Modulo Temperatura. (68 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Construcción del modulo e integración de componentes, sensor de temperatura con placa Esp8266. (15 hs)
+	\item Creación del programa de lectura para el microcontrolador. (15 hs)
+	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
+	\item Testeo y depuración del envió de datos al modulo principal de la red local. (10 hs)
+	\item Verificación y formateo de datos capturados por el sensor para su envió al modulo central. (5 hs)
+	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (8 hs)
 	\end{enumerate}
-\item Desarrollo del Modulo Actuador
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del Modulo Actuador. (88 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Construcción del modulo e integración de componentes, actuador con placa Esp8266. (15 hs)
+	\item Creación del programa de lectura para el microcontrolador. (15 hs)
+	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
+	\item Testeo y depuración de la recepción y envió de datos al modulo principal de la red local. (20 hs)
+	\item Verificación y formateo de datos capturados de la red para su manipulación y transformación en ordenes de la placa hacia el Rele.(15 hs)
+	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de recepción de datos. (8 hs)
 	\end{enumerate}
-\item Verificación y testeo del sistema
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Verificación y testeo del sistema IOT. (68 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a internet (10 hs)
+	\item Verificación y depuración del funcionamiento de los roles de acceso del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a internet (10 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real con acceso a internet vía red local(10 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real sin acceso a internet vía red local (10 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil (10 hs)
+	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil cuando el modulo principal local se desconecta de internet (10 hs)
+	\item Realizar un informe resumen con las correcciones de las nuevas configuraciones a usar y todas las nuevas consideraciones de funcionamiento. (8 hs)
+	\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\item Propuestas y recomendaciones de mejora para la presentación del sistema IOT. (35 hs)
+	\begin{enumerate}
+	\item Creación de propuestas de mejora en el aspecto de presentación física para el modulo principal (5 hs)
+	\item Creación de propuestas de mejora en el aspecto de presentación física para cada uno de los módulos (5 hs)
+	\item Creación de propuestas de mejora para nuevas funcionalidades a considerar para su integración en trabajos futuros(5 hs)
+	\item Creación del manual de usuario del sistema IOT. (10 hs)
+	\item Creación de un vídeo resumen explicativo comercial del funcionamiento del sistema (10 hs)
 	\end{enumerate}	
+		
 \end{enumerate}
 
-Cantidad total de horas: (tantas hs)
-
-Se recomienda que no haya ninguna tarea que lleve más de 40 hs. 
+Cantidad total de horas: (794 hs)
 
 \end{consigna}
 
