@@ -14,15 +14,15 @@
 \autor{Daniel Iván Cruz Flores} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
-\director{Nombre del Director}
+\director{Mg. Ing. Matías Álvarez}
 \pertenenciaDirector{pertenencia} 
 % FIXME:NO IMPLEMENTADO EL CODIRECTOR ni su pertenencia
 \codirector{} % si queda vacio no se deberíá incluir 
 \pertenenciaCoDirector{}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Emprendimiento Personal}
-\empresaCliente{Emprendimiento Personal}
+\cliente{ Gabriela de la Cruz}
+\empresaCliente{ICF Network Eirl}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -33,8 +33,8 @@
 \pertenenciaJurTres{pertenencia (3)}
  
 \fechaINICIO{25 de agosto de 2020}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlanificacion{0 de mes de 2020} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{0 de mes de 2020}		%Fecha de defensa pública del trabajo final
+\fechaFINALPlanificacion{13 de octubre de 2020} 	%Fecha de final de cursada de GdP
+\fechaFINALTrabajo{31 de agosto de 2021}		%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -63,11 +63,9 @@
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 1.0      & Creación del documento                                          & 27/06/2020 \\ \hline
-1.1      &                                                                 & dd/mm/aaaa \\ \hline
-1.2      & Otro ejemplo \newline
-		   Con texto partido \newline
-		   En varias líneas \newline
-		   A propósito                                                     & dd/mm/aaaa \\ \hline
+1.1      & Entrega del documento hasta el punto 6 \newline
+			(sin incluir canvas e historias de usuarios)            & 07/09/2020 \\ \hline
+1.2      & Entrega del documento completo hasta el punto 6          & 15/09/2020 \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -84,7 +82,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un sistema capaz de controlar y monitorear viviendas u otros ambientes mediante el protocolo MQTT para brindar una gestión inteligente respecto a confort y consumo energético, y tendrá un presupuesto preliminar estimado de 600 hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un sistema capaz de controlar y monitorear viviendas u otros ambientes mediante el protocolo MQTT para brindar una gestión inteligente y tendrá un presupuesto preliminar estimado de 610 hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -106,105 +104,103 @@ Se adjunta a esta acta la planificación inicial.
 
 \section{Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
-La tecnología está tomando cada vez mayor relevancia pues ya no sólo está incluida en procesos científicos, industriales o educativos, sino también forma parte de nuestras vidas y de nuestros hogares. Este es el caso de la automatización orientada a viviendas o lugares de trabajo. Aunque existen muchas soluciones que ofrecen dotar de tecnología ciertos elementos en un hogar, su principal desventaja es que casi siempre se usa una aplicación cerrada y diferente para cada uno de los elementos a controlar. Esto resulta complejo y costoso por la compatibilidad de los componentes y aplicaciones de distintos fabricantes al momento de centralizar. Incluso en algunos casos es imposible integrar los sistemas en un solo sistema de control.
+La tecnología de automatización orientada a viviendas y lugares de trabajo está tomando cada vez mayor relevancia en nuestras vidas, aunque existen muchas soluciones que ofrecen dotar de tecnología a ciertos elementos en un ambiente, su principal desventaja es que casi siempre la recolección de datos se realiza con sensores que dependen de una conexión a Internet para enviar sus valores a un servidor central para su gestión. Esto resulta práctico de usar sensores pero con la desventaja de que la gestión funciona solo si existe conexión a Internet, además los sensores más comerciales están destinados a un uso individual con su propia aplicación móvil, complicando la necesidad de tener una única solución centralizada ante el uso de múltiples sensores.
 
-El presente proyecto se destaca especialmente por centralizar y unificar resultados de la red de sensores en un sistema web principal de monitoreo y control. Para lograr esta tarea, se trabajará con la recolección de datos de sensores ubicados en distintos puntos de estudio de una vivienda o ambiente. Cada una de las lecturas serán enviadas a una unidad central local mediante el protocolo MQTT por vía inalámbrica.
+El presente proyecto se destaca especialmente por centralizar y unificar resultados de la red de sensores en un sistema web principal de monitoreo y control sin depender de la conexión a Internet para su funcionamiento. Para lograr esta tarea se trabajará con la recolección de datos de sensores ubicados en distintos puntos de estudio de una vivienda o ambiente conectados a una red local dedicada. Cada una de las lecturas de los sensores serán enviadas a una unidad central local mediante el protocolo MQTT por vía inalámbrica, dejando la dependencia del Internet solo para los accesos remotos. El módulo central local contará con la función para replicar los valores recolectados hacia un servicio en la nube, tarea que se realizará mientras tenga conexión a Internet.
 
-El sistema de monitoreo contará de dos formas de acceso: la primera es vía red local y la segunda vía internet desde cualquier dispositivo capaz de conectarse a la red mediante un navegador.
+Las funciones principales a implementar están orientados a confort (control de ventiladores y luces) y consumo energético (consumo de energía de tv, refrigerador y ventiladores). En la Figura \ref{fig:diagBloques} se presenta el diagrama de bloques del sistema. 
 
-El sistema de monitoreo que se propone deberá seguir funcionando así exista una desconexión a internet, dado que si existe algún corte de salida a internet todos los datos seguirán funcionando vía red local y la próxima vez que se conecte a internet actualizará el estado de las variables en el módulo remoto para el acceso externo, Esto lo diferencia de otros sistemas similares porque la mayoría están basados en la recolección de datos con envió directo a la nube pero si existiera un corte de red el sistema dejaría de funcionar. En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa los componentes principales que involucra el proyecto.
+El sistema a desarrollar contará de dos formas de acceso: la primera es vía red local y la segunda vía Internet desde cualquier dispositivo mediante un navegador.
 
-\vspace{20px}
+%\vspace{20px}
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=1.07\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=0.73\textwidth]{./Figuras/diagBloques.png}
 \caption{Diagrama en bloques del sistema}
 \label{fig:diagBloques}
 \end{figure}
 
-\vspace{20px}
-
-El sistema IOT a desarrollar contará con componentes esenciales de hardware y software los cuales será necesario desarrollar para poder verificar el funcionamiento del mismo según la idean planteada. 
+%\vspace{20px}
 
 A continuación se detalla brevemente cada componente que comprende el presente proyecto.
 
-a) MÓDULO PRINCIPAL: Unidad Central Local.
+a) MÓDULO PRINCIPAL: unidad central local.
 \begin{itemize}
 \item Hardware: Raspberry Pi 4.
-\item SO: Raspbian.
+\item Sistema operativo: Raspbian.
 \item Servidor web: Apache.
-\item Base de Datos: MySql
+\item Base de datos: MySql.
 \item Lenguajes Backend: Python, PHP 7.
-\item Lenguajes Frontend: HTML5, CSS – Bootstrap 4 y JavaScript.
+\item Lenguajes Frontend: HTML5, CSS – Bootstrap 4 y Javascript.
 \item Broker MQTT: Eclipse Mosquitto.
-\item Interfaz - Monitor: Pantalla Monitor/Pantalla Touch.
-\item Importancia: Este es el módulo principal y el más complejo a desarrollar, es donde se podrá observar un dashboard (resumen) del sistema de control y monitoreo para su acceso en red local. La interfaz gráfica mostrará gráficos estadísticos así como un historial de las lecturas de los sensores y el estado de los mismos.
+\item Interfaz - Monitor: Pantalla monitor/Pantalla touch.
+\item Importancia: Este es el módulo principal y el más complejo a desarrollar, es donde se podrá observar un dashboard (resumen) del sistema de control y monitoreo para su acceso en red local. La interfaz gráfica mostrará gráficos estadísticos así como un historial de las lecturas de los sensores y sus estados.
 \end{itemize}
 
-b) MÓDULO REPLICA: Unidad Remota.
+b) MÓDULO RÉPLICA: unidad remota.
 \begin{itemize}
-\item Servidor web: Apache (Hosting o nube).
-\item Base de Datos: MySql.
-\item Lenguajes Backend: PHP 7 y JavaScript.
-\item Lenguajes FrontEnd: HTML5 y CSS – Bootstrap 4.
-\item Importancia: Este es una réplica del módulo principal pero en la nube donde se podrá observar un dashboard del sistema de control y monitoreo pero para el acceso remoto.
+\item Servidor web: Apache (hosting o nube).
+\item Base de datos: MySql.
+\item Lenguajes Backend: PHP 7.
+\item Lenguajes FrontEnd: HTML5 y CSS – Bootstrap 4 y Javascript.
+\item Importancia: Este es una réplica del módulo principal en la nube donde se podrá observar un dashboard del sistema de control y monitoreo para el acceso remoto.
 \end{itemize}
 
 
-c) MÓDULO CONSUMO: Para medir Consumo Energético.
+c) MÓDULO CONSUMO: para medir consumo energético.
 \begin{itemize}
-\item Hardware Base: NodeMCU esp8266
+\item Hardware base: NodeMCU esp8266.
 \item Lenguaje: Arduino.
-\item Protocolo Comunicación: MQTT.
+\item Protocolo de comunicación: MQTT.
 \item Sensor: Corriente AC max 100A no invasivo.
-\item Medio Transmisión: Wireless.
-\item Cantidad: 2
-\item Objetos Estudio: Tv y Refrigerador.
-\item Importancia: Este módulo permite recoger muestras del valor del consumo diario para poder almacenarlos en la base de datos en el módulo principal, permitiendo estimar costos de consumo mensual; información relevante para el usuario porque permitirá saber el consumo detallado de los dispositivos de estudio.
+\item Medio transmisión: Wireless.
+\item Cantidad: 2.
+\item Objetos de estudio: Tv y refrigerador.
+\item Importancia: Este módulo permite recoger muestras del valor del consumo diario para poder almacenarlos en la base de datos en el módulo principal. A su vez, sirve para estimar costos de consumo mensual; información relevante para el usuario porque permitirá saber el consumo detallado de los dispositivos de estudio.
 \end{itemize}
 
-d) MÓDULO TEMPERATURA: Para medir temperatura - Confort.
+d) MÓDULO TEMPERATURA: para medir temperatura - confort.
 \begin{itemize}
-\item Hardware Base: NodeMCU esp8266
+\item Hardware base: NodeMCU esp8266.
 \item Lenguaje: Arduino
-\item Protocolo Comunicación: MQTT.
+\item Protocolo de comunicación: MQTT.
 \item Sensor: Temperatura ambiente.
-\item Medio Transmisión: Wireless.
-\item Cantidad: 2
-\item Objetos de Estudio: Sala y una oficina.
+\item Medio de transmisión: Wireless.
+\item Cantidad: 2.
+\item Objetos de estudio: Sala y una oficina.
 \item Importancia: Este módulo permite recoger muestras del valor de la temperatura en determinados ambientes de estudio, dichos valores pueden ser almacenados y usados para estudio de patrones de variación de temperatura por horarios.
 \end{itemize}
 
-e) MÓDULO ACTUADOR: Para Control actuador - Confort.
+e) MÓDULO ACTUADOR: para control actuador - confort.
 \begin{itemize}
-\item Hardware Base: NodeMCU esp8266
+\item Hardware base: NodeMCU esp8266.
 \item Lenguaje: Arduino.
-\item Protocolo Comunicación: MQTT.
+\item Protocolo de comunicación: MQTT.
 \item Actuador: Relay de un canal.
-\item Medio Transmisión: Wireless.
-\item Cantidad: 2
-\item Objetos de Estudio: Control de Ventiladores (Según datos del Modulo Temperatura).
-\item Importancia: Este actuador es un Modulo complementario del "Modulo Temperatura"; permitirá saber el historial de uso y demanda de uso de ventiladores; patrones que pueden ser tema de estudio relacionado al consumo en aplicaciones futuras.
+\item Medio de transmisión: Wireless.
+\item Cantidad: 2.
+\item Objetos de estudio: Control de ventiladores (según datos del módulo temperatura).
+\item Importancia: Este actuador es un módulo complementario del "módulo temperatura"; permitirá saber el historial de uso y demanda de uso de ventiladores; patrones que pueden ser tema de estudio relacionado al consumo en aplicaciones futuras.
 \end{itemize}
 
-f) MÓDULO INTELIGENTE: Para medir y Controlar de forma Inteligente - confort y salud.
+f) MÓDULO INTELIGENTE: para medir y controlar de forma inteligente - confort y salud.
 \begin{itemize}
-\item Hardware Base: Raspberry Pi/Esp32 Cam/Otro.
+\item Hardware base: Raspberry Pi/Esp32 Cam/Otro.
 \item Lenguaje: Arduino y Python.
-\item Protocolo Comunicación: MQTT.
+\item Protocolo de comunicación: MQTT.
 \item Actuador: Real-Time Face Recognition.
 \item Sensor: Lectura de temperatura corporal.
-\item Medio Transmisión: Wireless.
-\item Cantidad: 1
-\item Objeto de Estudio: Seguimiento de posibles casos de fiebre.
-\item Importancia: Este módulo es el segundo módulo complejo a desarrollar por la forma a implementar para la identificación del individuo y la relación de lecturas de temperatura. Con los datos almacenados se puede usar para un estudio de patrones respecto de fechas y estaciones de fiebre. Por el momento se considera en este módulo el tema: "Temperatura corporal", pero para trabajos futuros se puede extender las funcionalidades.
+\item Medio de transmisión: Wireless.
+\item Cantidad: 1.
+\item Objeto de estudio: Seguimiento de posibles casos de fiebre.
+\item Importancia: Este módulo es el segundo módulo complejo a desarrollar por la forma a implementar para la identificación del individuo y la relación de lecturas de temperatura. Con los datos almacenados se puede usar para un estudio de patrones respecto de fechas y estaciones de fiebre. Por el momento se considera en este módulo el tema: "temperatura corporal", pero para trabajos futuros se puede extender las funcionalidades.
 \end{itemize}
 
 \section{Modelo canvas del negocio del proyecto}
 
-El Business Model Canvas, traducido como lienzo de modelo de negocio, es una plantilla de gestión estratégica para el desarrollo de nuevos modelos de negocio y puede resultarles útil para conocer mas a detalle el esquema de negocio. En la Figura \ref{fig:diagCanvas}
-es un gráfico visual con elementos que describen la propuesta de negocio del proyecto y los distintos puntos mas importantes respecto a su orientación de mercado.
+Los elementos que describen la propuesta de negocio y los distintos puntos más importantes respecto a la orientación de mercado se muestra en el modelo canvas. En la Figura \ref{fig:diagCanvas} se presenta el diagrama canvas. 
+
 \vspace{25px}
 
 \begin{figure}[htpb]
@@ -215,7 +211,7 @@ es un gráfico visual con elementos que describen la propuesta de negocio del pr
 \end{figure}
 
 \begin{enumerate}
-\item Segmentos de Cliente:
+\item Segmentos de cliente:
 \begin{itemize}
 \item Oficinas, centros educativos, hoteles, centros de salud, edificios de departamentos y centros comerciales.  
 \item Familias de clase media y alta.
@@ -238,39 +234,40 @@ es un gráfico visual con elementos que describen la propuesta de negocio del pr
 \item Central telefónica para atender emergencias relacionas al uso del sistema IOT.
 \item Una App para dispositivos móviles para solicitar asesoría de uso de los productos o la visita de un técnico. 
 \end{itemize}
-\item Fuentes de Ingreso:
+\item Fuentes de ingreso:
 \begin{itemize}
-\item Venta del modulo principal y módulos de sensores básicos.
+\item Venta del módulo principal y módulos de sensores básicos.
 \item Venta del sistema IOT completo.
 \item Venta de módulos se sensado de energía individual con su respectiva App.
+\item Pago por servicio técnico.
 \item Pago por consumo de nuestro servicio en la nube.
 \end{itemize}
-\item Recursos Clave:
+\item Recursos clave:
 \begin{itemize}
-\item Diseño pequeño, tecnológico elegante del modulo del sistema principal para usar en casa u otro ambiente.
-\item Bajo consumo energético del modulo principal y módulos.
+\item Diseño pequeño, tecnológico y elegante del módulo del sistema principal para usar en casa u otro ambiente.
+\item Bajo consumo energético del módulo principal y módulos.
 \item Interfaz de usuario amigable y de fácil uso.
 \item Sistema seguro y de fácil instalación.
-\item Sistema en nube para controlar los brokers remotos de los clientes.
+\item Sistema en nube para controlar los Brokers remotos de los clientes.
 \item Equipo de Investigación y desarrollo.
 \item Componentes electrónicos y partes necesarias para la fabricación de módulos.
 \end{itemize}
-\item Actividades Clave:
+\item Actividades clave:
 \begin{itemize}
-\item Estrategias de Marketing.
-\item Investigación y Desarrollo.
+\item Estrategias de marketing.
+\item Investigación y desarrollo.
 \item Diseños de presentación de los módulos del sistema.
 \item Producción y pruebas de productos.
 \item Seguimiento del funcionamiento de los sistemas instalados a clientes.
 \item Atención rápida a solicitudes de soporte técnico y asesoría de los productos. 
 \end{itemize}
-\item Socios Claves:
+\item Socios claves:
 \begin{itemize}
 \item Proveedores de componentes electrónicos y partes necesarias para la fabricación de módulos.
 \item Empresas que ofrecen servicios de almacenamiento y gestión de recursos en nube.
 \item Tiendas de tecnología y automatización.
 \item Centros comerciales de tecnología.
-\item Empresas dedicadas a la instalación de soluciones domoticas.
+\item Empresas dedicadas a la instalación de soluciones domóticas.
 \item Organizadores de eventos y exposiciones de productos tecnológicos.
 \end{itemize}
 \item Estructura de costos:
@@ -280,7 +277,7 @@ es un gráfico visual con elementos que describen la propuesta de negocio del pr
 \item Costos de almacenamiento y servicios en la nube.
 \item Costos por estrategias y ejecución de marketing.
 \item Costos por el equipo de atención al cliente.
-\item Costos por actividades de desarrollo de negocios (alianzas y convenidos).
+\item Costos por actividades de desarrollo de negocios (alianzas y convenios).
 \end{itemize}
 \end{enumerate}
 
@@ -295,10 +292,10 @@ En la siguiente tabla se muestra de  forma resumida los stakeholders del present
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Cliente       & \clientename      &\empclientename	&     -   	\\ \hline
+Cliente       & \clientename      &\empclientename	&   Administrativo  	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &  Docentes y Consultores de hardware y software IOT. &      LSE - FIUBA 	&      Docente 	\\ \hline
-Orientador    & \supname	      & \pertesupname 	& Director	Trabajo final \\ \hline
+Colaborador &  Leoncio Moya Carranza &      ICF Network Eirl 	&      Ing. redes y servidores 	\\ \hline
+Orientador    & \supname	      & \pertesupname 	& Director	trabajo final \\ \hline
 Usuario final & Personas de clase media y alta.\newline    
 				Empresas del sector hotelero, salud y cualquier sector comercial. &    -        & Propietario/Jefe \\ \hline
 
@@ -309,10 +306,10 @@ Usuario final & Personas de clase media y alta.\newline
 Principales características de cada interesado.
 
 \begin{itemize}
-\item Cliente: No existe por el momento un cliente directo dado que es un emprendimiento personal.
+\item Cliente: Gabriela de la Cruz, es rigurosa y observadora en los detalles.
 \item Responsable: Daniel Iván Cruz Flores, también es el único personal del equipo de desarrollo.
-\item Colaboradores: Cada unos de los docentes de la especialización en IOT del LSE - FIUBA.
-\item Orientador: \supname, nos va a poder ayudar mucho con la gestión y formulación del proyecto.
+\item Colaboradores: Leoncio Moya Carranza ayuda mucho en el diseño y la configuración de redes.
+\item Orientador: \supname, va a poder ayudar mucho con la gestión y formulación del proyecto.
 \item Usuario Final: Hogares o empresas que desean tener información detalla para gestionar el consumo energético y contar con algunas características de confort.
 \end{itemize}
 
@@ -327,30 +324,32 @@ El proposito de este proyecto es diseñar y desarrollar un sistema informático 
 \section{2. Alcance del proyecto}
 \label{sec:alcance}
 
-Por la cantidad de componentes detallados anteriormente se debe estimar el alcance a considerar para esta primera etapa del proyecto. Se considera un alcance de: 
+El proyecto incluye: 
 \begin{itemize}
-\item Diseño y desarrollo del Módulo principal.
-\item Diseño y desarrollo del Módulo Replica.
-\item Diseño y desarrollo del Módulo Consumo.
-\item Diseño y desarrollo del Módulo Temperatura.
-\item Diseño y desarrollo del Módulo Actuador.
+\item Diseño y desarrollo del módulo principal.
+\item Diseño y desarrollo del módulo réplica.
+\item Diseño y desarrollo del módulo consumo.
+\item Diseño y desarrollo del módulo temperatura.
+\item Diseño y desarrollo del módulo actuador.
 \end{itemize}
 
-El presente proyecto no incluye el desarrollo del ``Módulo Inteligente'' y futuros módulos de interacción por voz Humano - Computador, dichos módulos serán temas de desarrollo en trabajos futuros.
+El presente proyecto no incluye el desarrollo del ``módulo inteligente'' y futuros módulos de interacción por voz Humano - Computador. Dichos módulos serán temas de desarrollo en trabajos futuros.
 
 \section{3. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red}
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que: 
 \begin{itemize}
-\item Supuesto 1 ...
-\item Supuesto 2...
+\item El cliente cuenta con una red LAN y con conexión a Internet.
+\item El cliente cuenta con los componentes básicos de red para la creación de una red LAN dedicada.
+\item El cliente cuenta con conocimientos mínimos de informática.
+\item Se dispondrá del tiempo y recursos para desarrollar los módulos de hardware.
+\item Los tiempos para el desarrollo de la aplicación web principal estará dentro de los márgenes establecidos.
 \end{itemize}
 
 %Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
 
-\end{consigna}
+
 
 \section{4. Requerimientos}
 \label{sec:requerimientos}
@@ -358,71 +357,75 @@ El presente proyecto no incluye el desarrollo del ``Módulo Inteligente'' y futu
 Los requerimientos se enumeran agrupados por afinidad:
 
 \begin{enumerate}
-\item Grupo de requerimientos asociados al "Módulo Principal''.
+\item Grupo de requerimientos asociados al ``módulo principal''.
 	\begin{enumerate}
-	\item El modulo debe tener instalado un servidor web.
-	\item El modulo debe tener instalado un gestor de base de datos MySql.
-	\item El modulo debe tener instalado un broker.
-	\item El modulo debe tener instalado Pyhton 3.x.
-	\item El modulo debe tener un programa ejecutándose en segundo plano para detectar los valores que llegan al broker y enviarlo a la base de datos local.
-	\item El modulo debe tener ejecutándose en segundo plano un programa que replicará hacia la nube los datos que reciba el broker local mientras tenga acceso a internet.
-	\item El modulo al ser encendido debe iniciar automáticamente el servidor web, el gestor de base de datos, el broker, el programa de captura de datos para el envio a la base de datos y el programa que hace la replica a la nube.
-	\item El modulo debe tener una aplicación web para mostrar de forma amigable los datos capturados para permitir la gestión, control y monitoreo del sistema IOT.
-	\item La aplicación debe leer los datos que llegan al broker y mostrarlo vía web para comprobar que existe comunicación constante con el resto de módulos del sistema.
+	\item El módulo debe tener instalado un servidor web.
+	\item El módulo debe tener instalado un gestor de base de datos MySql.
+	\item El módulo debe tener instalado un Broker.
+	\item El módulo debe tener instalado Pyhton 3.x.
+	\item El módulo debe tener un programa ejecutándose en segundo plano para detectar los valores que llegan al Broker y enviarlo a la base de datos local.
+	\item El módulo debe tener ejecutándose en segundo plano un programa que replicará hacia la nube los datos que reciba el Broker local mientras tenga acceso a Internet.
+	\item El módulo al ser encendido debe iniciar automáticamente el servidor web, el gestor de base de datos, el Broker, el programa de captura de datos para el envío a la base de datos y el programa que hace la réplica a la nube.
+	\item El módulo debe tener una aplicación web para mostrar de forma amigable los datos capturados para permitir la gestión, control y monitoreo del sistema IOT.
+	\item La aplicación debe leer los datos que llegan al Broker y mostrarlo vía web para comprobar que existe comunicación constante con el resto de módulos del sistema.
 	\item La aplicación debe reportar los datos que llegan la base de datos mediante AJAX (Asynchronous JavaScript and XML).
 	\item La aplicación debe mostrar información resumida mediante gráficos estadísticos y tablas detalladas de los sensores y módulos del sistema.
 	\item La aplicación debe permitir generar reportes detallados en PDF de los datos capturados en la base de datos.
+	\item La aplicación debe mostrar reportes del consumo energético actual por sensor.
+	\item La aplicación debe mostrar los estados de los sensores (conectado, encendido o apagado) en tiempo real.	
 	\item La aplicación debe permitir el acceso de 2 tipos de usuarios: el administrador con permisos totales del sistema y el usuario que solo desea ver información.
-	\item La aplicación web deberá seguir funcionando correctamente si existiera algún corte de acceso a internet.
+	\item La aplicación web deberá seguir funcionando correctamente si existiera algún corte de acceso a Internet.
 	\item La aplicación debe contar con un protector de pantalla para cuando no se este interactuando (prioridad menor).
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Grupo de requerimientos asociados al "Módulo Replica''.
+\item Grupo de requerimientos asociados al ``módulo réplica''.
 	\begin{enumerate}
-	\item El modulo debe tener una aplicación web para mostrar de forma amigable los datos replicados del sistema IOT.
+	\item El módulo debe tener una aplicación web para mostrar de forma amigable los datos replicados del sistema IOT.
 	\item La aplicación web estará almacenada en un servicio de servidor web remoto (Hosting).
-	\item La aplicación web debe leer todos los datos que llegan al broker remoto de replica.
+	\item La aplicación web debe leer todos los datos que llegan al Broker remoto de réplica.
 	\item La aplicación web debe ser estructurada con la característica de adaptabilidad para su acceso desde dispositivos portátiles.
+	\item La aplicación debe mostrar reportes del consumo energético actual por sensor.
+	\item La aplicación debe mostrar los estados de los sensores (conectado, encendido o apagado) en tiempo real.	
 	\item La aplicación deberá mostrar un mensaje de alerta cuando el sistema principal local perdió conexión y no puede enviar los valores en tiempo real.
 	\item La aplicación debe permitir el acceso de 2 tipos de usuarios: el administrador con permisos totales del sistema y el usuario que solo desea ver información.
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Grupo de requerimientos asociados al "Módulo Consumo''.
+\item Grupo de requerimientos asociados al ``módulo consumo''.
 	\begin{enumerate}
-	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
-	\item El modulo debe leer cada 5 segundos los datos del sensor de corriente.
-	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
-	\item El modulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el broker del Modulo principal central.
-	\item El modulo debe estar funcionando 24/7.
-	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación (prioridad menor).
+	\item El módulo debe usar una conexión Micro-USB para su fuente de alimentación de la placa principal.
+	\item El módulo debe leer cada 5 segundos los datos del sensor de corriente.
+	\item El módulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El módulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el Broker del módulo principal central.
+	\item El módulo debe estar funcionando 24/7.
+	\item El módulo debe tener un case para protección de sus componentes internos y para su mejor presentación (prioridad menor).
 	\end{enumerate}	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Grupo de requerimientos asociados al "Módulo Temperatura''.
+\item Grupo de requerimientos asociados al ``módulo temperatura''.
 	\begin{enumerate}
-	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
-	\item El modulo debe leer cada 2 segundos los datos del sensor de temperatura.
-	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
-	\item El modulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el broker del Modulo principal central.
-	\item El modulo debe estar funcionando 24/7.
-	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
+	\item El módulo debe usar una conexión Micro-USB para su fuente de alimentación para la placa principal.
+	\item El módulo debe leer cada 2 segundos los datos del sensor de temperatura.
+	\item El módulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El módulo debe enviar sus lecturas obtenidas mediante el protocolo MQTT hacia el Broker del módulo principal central.
+	\item El módulo debe estar funcionando 24/7.
+	\item El módulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
 	\end{enumerate}	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Grupo de requerimientos asociados al "Módulo Actuador''.
+\item Grupo de requerimientos asociados al ``módulo actuador''.
 	\begin{enumerate}
-	\item El modulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
-		\item El modulo debe recibir datos mediante el protocolo MQTT desde el broker del Modulo principal central.
-	\item El modulo debe leer cada 1 segundos los datos que se le envían desde el modulo principal.
-	\item El modulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
-	\item El modulo debe estar funcionando 24/7.
-	\item El modulo deberá estar conectado a un ventilador y actuara mediante un rele para su encendido o apagado del mismo.
-	\item El modulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
+	\item El módulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
+		\item El módulo debe recibir datos mediante el protocolo MQTT desde el Broker del módulo principal central.
+	\item El módulo debe leer cada 1 segundos los datos que se le envían desde el módulo principal.
+	\item El módulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
+	\item El módulo debe estar funcionando 24/7.
+	\item El módulo deberá estar conectado a un ventilador y actuara mediante un relé para su encendido o apagado del mismo.
+	\item El módulo debe tener un case para protección de sus componentes internos y para su mejor presentación(prioridad menor)
 	\end{enumerate}
 
-\item Grupo de requerimientos asociados a la ''Red Local''.
+\item Grupo de requerimientos asociados a la ``red local''.
 	\begin{enumerate}
-	\item La red local debe estar configurado con direcciones Ip estáticas.
-	\item La red local debe estar configurado con un Access Point para garantizar la fácil conexión entre módulos del sistema IOT así como extender el rango de la señal wifi.
-	\item El Access Point de la red debe estar configurado en un canal de comunicación que no tenga solapamiento de canales wifi.
+	\item La red local debe estar configurada con direcciones IP estáticas.
+	\item La red local debe estar configurada con un access point para garantizar la fácil conexión entre módulos del sistema IOT así como extender el rango de la señal wifi.
+	\item El access point de la red debe estar configurado en un canal de comunicación que no tenga solapamiento de canales wifi.
 	\item La conexión a la red del pc del usuario administrador y de la pantalla monitor debe estar conectado vía cable Ethernet(prioridad menor).
 	\end{enumerate}
 
@@ -433,11 +436,21 @@ Los requerimientos se enumeran agrupados por afinidad:
 
 \begin{consigna}{red}
 Descripción: En esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+
+\begin{enumerate}
+\item ...
+\item ....
+\item ....
+\item ...
+\item ....
+
+\end{enumerate}
+
 \end{consigna}
 
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
-Para la verificación del funcionamiento del sistema IOT a implementar se considera los siguientes recursos entregables:
+
 \begin{itemize}
 \item Manual de uso.
 \item Diagrama esquemático.
@@ -449,127 +462,127 @@ Para la verificación del funcionamiento del sistema IOT a implementar se consid
 
 \section{6. Desglose del trabajo en tareas}
 \label{sec:wbs}
-Las tareas se muestras agrupados para una mejor comprensión:
+Las tareas se muestran agrupados para una mejor comprensión:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{enumerate}
-\item Búsqueda de material bibliográfico. (58 hs)
+\item Búsqueda de material bibliográfico. (40 hs)
 	\begin{enumerate}
 	\item Búsqueda de soluciones similares en el mercado. (5 hs)
-	\item Búsqueda de códigos fuente similares a los que se usará. (10 hs)
+	\item Búsqueda de códigos fuente de ejemplos similares a los que se usará. (10 hs)
 	\item Búsqueda de todos los componentes electrónicos a usar. (10 hs)
 	\item Estudiar la forma de integración de componentes a la red. (10 hs)
-	\item Estudiar cómo funciona cada uno de los componentes. (15 hs)
-	\item Realizar un informe resumen con la lista de componentes, aspectos de red y configuraciones básicas a usar. (8 hs)
+	\item Estudiar cómo funciona cada uno de los componentes. (10 hs)
+	\item Realizar un informe resumen con la lista de componentes, aspectos de red y configuraciones básicas a usar. (5 hs)
 	\end{enumerate}
 \item Adquisición de componentes. (20 hs)
 	\begin{enumerate}
-	\item Cotizar los costos de cada componente electrónico con los proveedores. (8 hs)
-	\item Realizar los pedidos a proveedores. (4 hs)
-	\item Realizar un informe de costos de los componentes adquiridos (8 hs)
+	\item Cotizar los costos de cada componente electrónico con los proveedores. (10 hs)
+	\item Realizar los pedidos a proveedores. (5 hs)
+	\item Realizar un informe de costos de los componentes adquiridos (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Diseño y configuración de Red Local. (24 hs)
+\item Diseño y configuración de red local. (16 hs)
 	\begin{enumerate}
-	\item Instalación del Modem/router en el lugar mas adecuado. (3 hs)
-	\item Instalación del Access Point en el lugar mas adecuado. (4 hs)
-	\item Configuración interna del Modem/Router y el Access Point. (4 hs)
-	\item Verificación e instalación de los puntos de donde se conectaran los módulos sensores de muestreo. (5 hs)
-	\item Realizar un informe de la configuración de red local instalada. (8 hs)
+	\item Instalación del modem/router en el lugar más adecuado. (2 hs)
+	\item Instalación del access point en el lugar más adecuado. (2 hs)
+	\item Configuración interna del modem/router y el access point. (2 hs)
+	\item Verificación e instalación de los puntos de donde se conectarán los módulos sensores de muestreo. (5 hs)
+	\item Realizar un informe de la configuración de red local instalada. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del Modulo Principal. (252 hs)
+\item Desarrollo del módulo principal. (239 hs)
 	\begin{enumerate}
 	\item Instalación del sistema operativo en la Raspberry Pi (2 hs)
 	\item Instalación y configuración del servidor web (5 hs)
 	\item Instalación y configuración de Python 3 (2 hs)
-	\item Instalación y configuración del Broker Local (5 hs)
-	\item Creación del programa para leer datos que llegan al broker y enviarlo a la base de datos. (5 hs)
-	\item Creación del programa para verificar constantemente el acceso a internet (5 hs)
-	\item Creación del programa para leer datos que llegan al broker y replicarlos a la nube. (15 hs)
-	\item Creación y configuración del script lanzador que iniciará automáticamente los programas al encender el modulo. (10 hs)
-	\item Testeo del funcionamiento y conexión a la red inicial del modulo. (10 hs)
+	\item Instalación y configuración del Broker local (5 hs)
+	\item Creación del programa para leer datos que llegan al Broker y enviarlo a la base de datos. (10 hs)
+	\item Creación del programa para verificar constantemente el acceso a Internet (5 hs)
+	\item Creación del programa para leer datos que llegan al Broker y replicarlos a la nube. (10 hs)
+	\item Creación y configuración del script lanzador que iniciará automáticamente los programas al encender el módulo. (5 hs)
+	\item Testeo del funcionamiento y conexión del módulo a la red local. (5 hs)
 	\item Diseño y creación de la base de datos. (10 hs)
-	\item Diseño y maquetación de la aplicación web principal. (35 hs)
+	\item Diseño y maquetación de la aplicación web principal. (40 hs)
 	\item Desarrollo de todas las funcionalidades backend de la aplicación. (40 hs)
-	\item Integración de todas las funcionalidades backend con el fronted de la aplicación web (30 hs)
-	\item Creación de los tipos de reportes que ofrecerá la aplicación. (20 hs)
+	\item Integración de todas las funcionalidades backend con el fronted de la aplicación web (20 hs)
+	\item Creación de los tipos de reportes que ofrecerá la aplicación. (40 hs)
 	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (10 hs)
 	\item Testeo y depuración del funcionamiento de la aplicación web en el pc del administrador. (5 hs)
-	\item Testeo y depuración del funcionamiento de la aplicación web en el monitor informativo. (5 hs)
-	\item Testeo y depuración del funcionamiento del sistema del modulo principal en situaciones de corte de internet. (30 hs) 
-	\item Realizar un informe resumen de las características del modulo, aspectos de red, configuraciones a usar, credenciales de acceso del usuario root, versiones del software, credenciales de acceso a la administración a la base de datos y a la aplicación web. (8 hs)
+	\item Testeo y depuración del funcionamiento de la aplicación web en el monitor informativo. (10 hs)
+	\item Testeo y depuración del funcionamiento del sistema del módulo principal en situaciones de corte del acceso a Internet. (10 hs) 
+	\item Realizar un informe resumen de las características del módulo, aspectos de red, configuraciones a usar, credenciales de acceso del usuario root, versiones del software, credenciales de acceso a la administración a la base de datos y a la aplicación web. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del Modulo Replica. (143 hs)
+\item Desarrollo del módulo réplica. (95 hs)
 	\begin{enumerate}
 	\item Creación y configuración del Broker remoto (5 hs)
-	\item Integración del Broker remoto con el modulo principal local para las replicas(10 hs)
-	\item verificación y testeo de enlace del broker local con el broker remoto. (10 hs)
+	\item Integración del Broker remoto con el módulo principal local para las replicas(10 hs)
+	\item Verificación y testeo de enlace del Broker local con el Broker remoto. (10 hs)
 	\item Creación de la base de datos replica en la nube. (5 hs) 
-	\item Adaptación de la aplicación web local para su funcionamiento en remoto  (40 hs)
-	\item Configuración de recepción de datos del broker remoto hacia la aplicación en nube.  (20 hs)
-	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (10 hs) 
-	\item Testeo y depuración del funcionamiento de la aplicación web desde el pc del administrador. (5 hs) 
-	\item Testeo y depuración del funcionamiento de la aplicación en diferentes dispositivos portátiles. (30 hs)
-	\item Realizar un informe resumen de las configuraciones a usar y credenciales de acceso a la cuenta de administración. (8 hs)
+	\item Adaptación de la aplicación web local para su funcionamiento en remoto  (25 hs)
+	\item Configuración de recepción de datos del Broker remoto hacia la aplicación en nube.  (10 hs)
+	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (5 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación web desde el pc del administrador. (10 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación en diferentes dispositivos portátiles. (10 hs)
+	\item Realizar un informe resumen de las configuraciones a usar y credenciales de acceso a la cuenta de administración. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del Modulo de Consumo. (73 hs)
+\item Desarrollo del módulo de consumo. (55 hs)
 	\begin{enumerate}
-	\item Construcción del modulo e integración de componentes, sensor de corriente con placa Esp8266. (15 hs)
-	\item Creación del programa de lectura para el microcontrolador. (15 hs)
-	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
-	\item Testeo y depuración del envió de datos al modulo principal de la red local. (10 hs)
-	\item Verificación y formateo de datos capturados por el sensor para su envió al modulo central. (10 hs)
-	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
-	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (8 hs)
+	\item Construcción del módulo e integración de componentes, sensor de corriente con placa Esp8266. (15 hs)
+	\item Creación del programa de lectura para el microcontrolador. (10 hs)
+	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
+	\item Testeo y depuración del envió de datos al módulo principal en la red local. (5 hs)
+	\item Verificación y formateo de datos capturados por el sensor para su envió al módulo central. (10 hs)
+	\item Instalación del módulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del Modulo Temperatura. (68 hs)
+\item Desarrollo del módulo temperatura. (40 hs)
 	\begin{enumerate}
-	\item Construcción del modulo e integración de componentes, sensor de temperatura con placa Esp8266. (15 hs)
-	\item Creación del programa de lectura para el microcontrolador. (15 hs)
-	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
-	\item Testeo y depuración del envió de datos al modulo principal de la red local. (10 hs)
-	\item Verificación y formateo de datos capturados por el sensor para su envió al modulo central. (5 hs)
-	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
-	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (8 hs)
+	\item Construcción del módulo e integración de componentes, sensor de temperatura con placa Esp8266. (10 hs)
+	\item Creación del programa de lectura para el microcontrolador. (5 hs)
+	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
+	\item Testeo y depuración del envió de datos al módulo principal en la red local. (5 hs)
+	\item Verificación y formateo de datos capturados por el sensor para su envió al módulo central. (5 hs)
+	\item Instalación del módulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del Modulo Actuador. (88 hs)
+\item Desarrollo del módulo actuador. (55 hs)
 	\begin{enumerate}
-	\item Construcción del modulo e integración de componentes, actuador con placa Esp8266. (15 hs)
-	\item Creación del programa de lectura para el microcontrolador. (15 hs)
-	\item Testeo de conexión del modulo a la red y al modulo principal central. (10 hs)
-	\item Testeo y depuración de la recepción y envió de datos al modulo principal de la red local. (20 hs)
-	\item Verificación y formateo de datos capturados de la red para su manipulación y transformación en ordenes de la placa hacia el Rele.(15 hs)
-	\item Instalación del modulo en un ambiente determinado para su funcionamiento. (5 hs)
-	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de recepción de datos. (8 hs)
+	\item Construcción del módulo e integración de componentes, actuador con placa Esp8266. (15 hs)
+	\item Creación del programa de lectura para el microcontrolador. (10 hs)
+	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
+	\item Testeo y depuración de la recepción y envió de datos al módulo principal en la red local. (5 hs)
+	\item Verificación y formateo de datos capturados de la red para su manipulación y transformación en ordenes de la placa hacia el relé.(10 hs)
+	\item Instalación del módulo en un ambiente determinado para su funcionamiento. (5 hs)
+	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de recepción de datos. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Verificación y testeo del sistema IOT. (68 hs)
+\item Verificación y testeo del sistema IOT. (50 hs)
 	\begin{enumerate}
-	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a internet (10 hs)
-	\item Verificación y depuración del funcionamiento de los roles de acceso del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a internet (10 hs) 
-	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real con acceso a internet vía red local(10 hs) 
-	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real sin acceso a internet vía red local (10 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a Internet (5 hs)
+	\item Verificación y depuración del funcionamiento de los roles de acceso del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a Internet (5 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real con acceso a Internet vía red local(5 hs) 
+	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real sin acceso a Internet vía red local (10 hs) 
 	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil (10 hs)
-	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil cuando el modulo principal local se desconecta de internet (10 hs)
-	\item Realizar un informe resumen con las correcciones de las nuevas configuraciones a usar y todas las nuevas consideraciones de funcionamiento. (8 hs)
+	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil cuando el módulo principal local se desconecta de Internet (10 hs)
+	\item Realizar un informe resumen con las correcciones de las nuevas configuraciones a usar y todas las nuevas consideraciones de funcionamiento. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Propuestas y recomendaciones de mejora para la presentación del sistema IOT. (35 hs)
-	\begin{enumerate}
-	\item Creación de propuestas de mejora en el aspecto de presentación física para el modulo principal (5 hs)
-	\item Creación de propuestas de mejora en el aspecto de presentación física para cada uno de los módulos (5 hs)
-	\item Creación de propuestas de mejora para nuevas funcionalidades a considerar para su integración en trabajos futuros(5 hs)
-	\item Creación del manual de usuario del sistema IOT. (10 hs)
-	\item Creación de un vídeo resumen explicativo comercial del funcionamiento del sistema (10 hs)
-	\end{enumerate}	
+%\item Propuestas y recomendaciones de mejora para la presentación del sistema IOT. (35 hs)
+%	\begin{enumerate}
+%	\item Creación de propuestas de mejora en el aspecto de presentación física para el módulo principal (5 hs)
+%	\item Creación de propuestas de mejora en el aspecto de presentación física para cada uno de los módulos (5 hs)
+%	\item Creación de propuestas de mejora para nuevas funcionalidades a considerar para su integración en trabajos futuros(5 hs)
+	%	\item Creación del manual de usuario del sistema IOT. (10 hs)
+%	\item Creación de un vídeo resumen explicativo comercial del funcionamiento del sistema (10 hs)
+%	\end{enumerate}	
 		
 \end{enumerate}
 
-Cantidad total de horas: (794 hs)
+Cantidad total de horas: (610 hs)
 
 \section{7. Diagrama de Activity On Node}
 \label{sec:AoN}
