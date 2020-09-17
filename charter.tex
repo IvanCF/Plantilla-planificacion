@@ -22,7 +22,7 @@
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
 \cliente{ Gabriela de la Cruz}
-\empresaCliente{ICF Network Eirl}
+\empresaCliente{ICF Network}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -199,9 +199,9 @@ f) MÓDULO INTELIGENTE: para medir y controlar de forma inteligente - confort y 
 
 \section{Modelo canvas del negocio del proyecto}
 
-Los elementos que describen la propuesta de negocio y los distintos puntos más importantes respecto a la orientación de mercado se muestra en el modelo canvas. En la Figura \ref{fig:diagCanvas} se presenta el diagrama canvas. 
+Los elementos que describen la propuesta de negocio y los distintos puntos más importantes respecto a la orientación de mercado se muestra en el modelo canvas. En la Figura \ref{fig:diagCanvas} se presenta el diagrama canvas del proyecto. 
 
-\vspace{25px}
+\vspace{15px}
 
 \begin{figure}[htpb]
 \centering 
@@ -228,7 +228,7 @@ Los elementos que describen la propuesta de negocio y los distintos puntos más 
 \item Tiendas de domótica.
 \item Empresas que ofrecen soluciones de automatización para hogares, oficinas, etc.
 \end{itemize}
-\item Relación con Clientes:
+\item Relación con clientes:
 \begin{itemize}
 \item Centro de información y soporte técnico mediante web.
 \item Central telefónica para atender emergencias relacionas al uso del sistema IOT.
@@ -294,7 +294,7 @@ En la siguiente tabla se muestra de  forma resumida los stakeholders del present
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Cliente       & \clientename      &\empclientename	&   Administrativo  	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaborador &  Leoncio Moya Carranza &      ICF Network Eirl 	&      Ing. redes y servidores 	\\ \hline
+Colaborador &  Leoncio Moya Carranza &      ICF Network 	&      Ing. redes y servidores 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director	trabajo final \\ \hline
 Usuario final & Personas de clase media y alta.\newline    
 				Empresas del sector hotelero, salud y cualquier sector comercial. &    -        & Propietario/Jefe \\ \hline
@@ -412,7 +412,7 @@ Los requerimientos se enumeran agrupados por afinidad:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \item Grupo de requerimientos asociados al ``módulo actuador''.
 	\begin{enumerate}
-	\item El módulo debe usar una conexión microUSB para su fuente de alimentación para la placa principal.
+	\item El módulo debe usar una conexión Micro-USB para su fuente de alimentación para la placa principal.
 		\item El módulo debe recibir datos mediante el protocolo MQTT desde el Broker del módulo principal central.
 	\item El módulo debe leer cada 1 segundos los datos que se le envían desde el módulo principal.
 	\item El módulo debe tener configurado los credenciales necesarios para unirse a la red local mediante Wifi.
@@ -434,20 +434,19 @@ Los requerimientos se enumeran agrupados por afinidad:
 \section{Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-Descripción: En esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+\begin{itemize}
+\item Como administrador del sistema quiero poder saber el estado de cada sensor para poder garantizar un correcto reporte de información en la aplicación.\newline
+Ponderación: 13
+\item Como administrador del sistema quiero poder saber cuántos sensores tengo conectados para poder conocer qué porcentaje del total están orientados al monitoreo de televisores.\newline Ponderación: 21
+\item Como administrador del sistema quiero poder acceder de forma remota desde mi laptop al sistema réplica para verificar la comunicación constante entre el sistema central local y el remoto.\newline Ponderación: 34
+\item Como cliente quiero consultar el consumo de energía por uso de ventiladores para poder conocer el costo de consumo por ventilador. \newline Ponderación: 21
+\item Como cliente quiero consultar el consumo de energía por uso de lámparas para poder conocer el horario promedio de mayor demanda. \newline Ponderación: 21
+\item Como cliente quiero saber cuál es el ambiente con máxima y mínima temperatura para poder estimar la instalación de ventiladores en lugares donde se requiera. \newline Ponderación: 34
+\item Como cliente quiero poder acceder al sistema de forma remota desde mi Tablet para poder verificar si deje alguna luz o ventilador encendido al salir de casa. \newline Ponderación: 34
+\item Como cliente quiero obtener reportes detallados de consumo energético de los días que se cortó la conexión a Internet para verificar el funcionamiento del sistema y comparar el consumo con otro día cualquiera. \newline Ponderación: 55
+\end{itemize}
 
-\begin{enumerate}
-\item ...
-\item ....
-\item ....
-\item ...
-\item ....
-
-\end{enumerate}
-
-\end{consigna}
-
+Como criterio de ponderación se utilizó la serie de Fibonacci.
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
 
