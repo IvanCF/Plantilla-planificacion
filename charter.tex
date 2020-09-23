@@ -1,4 +1,9 @@
 \documentclass[11pt]{charter}
+%%%% aqui para el paquete
+\usepackage{pdflscape} % paquete para girar la hoja
+\usepackage[most]{tcolorbox} % paquete para poner borde a imagen
+\usepackage{rotating} % para rotar tabla
+
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Sistema de control y monitoreo de confort y consumo energético para viviendas y edificios} 
@@ -15,7 +20,7 @@
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{Mg. Ing. Matías Álvarez}
-\pertenenciaDirector{pertenencia} 
+\pertenenciaDirector{FIUBA} 
 % FIXME:NO IMPLEMENTADO EL CODIRECTOR ni su pertenencia
 \codirector{} % si queda vacio no se deberíá incluir 
 \pertenenciaCoDirector{}
@@ -66,6 +71,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 1.1      & Entrega del documento hasta el punto 6 \newline
 			(sin incluir canvas e historias de usuarios)            & 07/09/2020 \\ \hline
 1.2      & Entrega del documento completo hasta el punto 6          & 15/09/2020 \\ \hline
+1.3      & Entrega del documento hasta el punto 11  & 22/09/2020 \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -155,7 +161,7 @@ c) MÓDULO CONSUMO: para medir consumo energético.
 \item Protocolo de comunicación: MQTT.
 \item Sensor: Corriente AC max 100A no invasivo.
 \item Medio transmisión: Wireless.
-\item Cantidad: 2.
+\item Cantidad: 1.
 \item Objetos de estudio: Tv y refrigerador.
 \item Importancia: Este módulo permite recoger muestras del valor del consumo diario para poder almacenarlos en la base de datos en el módulo principal. A su vez, sirve para estimar costos de consumo mensual; información relevante para el usuario porque permitirá saber el consumo detallado de los dispositivos de estudio.
 \end{itemize}
@@ -167,7 +173,7 @@ d) MÓDULO TEMPERATURA: para medir temperatura - confort.
 \item Protocolo de comunicación: MQTT.
 \item Sensor: Temperatura ambiente.
 \item Medio de transmisión: Wireless.
-\item Cantidad: 2.
+\item Cantidad: 1.
 \item Objetos de estudio: Sala y una oficina.
 \item Importancia: Este módulo permite recoger muestras del valor de la temperatura en determinados ambientes de estudio, dichos valores pueden ser almacenados y usados para estudio de patrones de variación de temperatura por horarios.
 \end{itemize}
@@ -179,7 +185,7 @@ e) MÓDULO ACTUADOR: para control actuador - confort.
 \item Protocolo de comunicación: MQTT.
 \item Actuador: Relay de un canal.
 \item Medio de transmisión: Wireless.
-\item Cantidad: 2.
+\item Cantidad: 1.
 \item Objetos de estudio: Control de ventiladores (según datos del módulo temperatura).
 \item Importancia: Este actuador es un módulo complementario del "módulo temperatura"; permitirá saber el historial de uso y demanda de uso de ventiladores; patrones que pueden ser tema de estudio relacionado al consumo en aplicaciones futuras.
 \end{itemize}
@@ -433,7 +439,7 @@ Los requerimientos se enumeran agrupados por afinidad:
 
 \section{Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
-
+Como criterio de ponderación se utilizó la serie de Fibonacci.
 \begin{itemize}
 \item Como administrador del sistema quiero poder saber el estado de cada sensor para poder garantizar un correcto reporte de información en la aplicación.\newline
 Ponderación: 13
@@ -446,19 +452,15 @@ Ponderación: 13
 \item Como cliente quiero obtener reportes detallados de consumo energético de los días que se cortó la conexión a Internet para verificar el funcionamiento del sistema y comparar el consumo con otro día cualquiera. \newline Ponderación: 55
 \end{itemize}
 
-Como criterio de ponderación se utilizó la serie de Fibonacci.
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
-
 \begin{itemize}
 \item Manual de uso.
 \item Diagrama esquemático.
 \item Diagrama de los componentes que forman el sistema.
 \item Vídeo demostrativo de las pruebas de funcionamiento.
 \item Informe final.
-
 \end{itemize}
-
 \section{6. Desglose del trabajo en tareas}
 \label{sec:wbs}
 Las tareas se muestran agrupados para una mejor comprensión:
@@ -503,7 +505,7 @@ Las tareas se muestran agrupados para una mejor comprensión:
 	\item Diseño y creación de la base de datos. (10 hs)
 	\item Diseño y maquetación de la aplicación web principal. (40 hs)
 	\item Desarrollo de todas las funcionalidades backend de la aplicación. (40 hs)
-	\item Integración de todas las funcionalidades backend con el fronted de la aplicación web (20 hs)
+	\item Integración de todas las funcionalidades backend con el frontend de la aplicación web (20 hs)
 	\item Creación de los tipos de reportes que ofrecerá la aplicación. (40 hs)
 	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (10 hs)
 	\item Testeo y depuración del funcionamiento de la aplicación web en el pc del administrador. (5 hs)
@@ -511,27 +513,14 @@ Las tareas se muestran agrupados para una mejor comprensión:
 	\item Testeo y depuración del funcionamiento del sistema del módulo principal en situaciones de corte del acceso a Internet. (10 hs) 
 	\item Realizar un informe resumen de las características del módulo, aspectos de red, configuraciones a usar, credenciales de acceso del usuario root, versiones del software, credenciales de acceso a la administración a la base de datos y a la aplicación web. (5 hs)
 	\end{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Desarrollo del módulo réplica. (95 hs)
-	\begin{enumerate}
-	\item Creación y configuración del Broker remoto (5 hs)
-	\item Integración del Broker remoto con el módulo principal local para las replicas(10 hs)
-	\item Verificación y testeo de enlace del Broker local con el Broker remoto. (10 hs)
-	\item Creación de la base de datos replica en la nube. (5 hs) 
-	\item Adaptación de la aplicación web local para su funcionamiento en remoto  (25 hs)
-	\item Configuración de recepción de datos del Broker remoto hacia la aplicación en nube.  (10 hs)
-	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (5 hs) 
-	\item Testeo y depuración del funcionamiento de la aplicación web desde el pc del administrador. (10 hs) 
-	\item Testeo y depuración del funcionamiento de la aplicación en diferentes dispositivos portátiles. (10 hs)
-	\item Realizar un informe resumen de las configuraciones a usar y credenciales de acceso a la cuenta de administración. (5 hs)
-	\end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \item Desarrollo del módulo de consumo. (55 hs)
 	\begin{enumerate}
 	\item Construcción del módulo e integración de componentes, sensor de corriente con placa Esp8266. (15 hs)
-	\item Creación del programa de lectura para el microcontrolador. (10 hs)
+	\item Creación del programa para leer datos del sensor. (10 hs)
 	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
-	\item Testeo y depuración del envió de datos al módulo principal en la red local. (5 hs)
+	\item Testeo y depuración del envío de datos al módulo principal en la red local. (5 hs)
 	\item Verificación y formateo de datos capturados por el sensor para su envió al módulo central. (10 hs)
 	\item Instalación del módulo en un ambiente determinado para su funcionamiento. (5 hs)
 	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de envió de datos. (5 hs)
@@ -540,7 +529,7 @@ Las tareas se muestran agrupados para una mejor comprensión:
 \item Desarrollo del módulo temperatura. (40 hs)
 	\begin{enumerate}
 	\item Construcción del módulo e integración de componentes, sensor de temperatura con placa Esp8266. (10 hs)
-	\item Creación del programa de lectura para el microcontrolador. (5 hs)
+	\item Creación del programa para leer datos del sensor. (5 hs)
 	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
 	\item Testeo y depuración del envió de datos al módulo principal en la red local. (5 hs)
 	\item Verificación y formateo de datos capturados por el sensor para su envió al módulo central. (5 hs)
@@ -551,22 +540,37 @@ Las tareas se muestran agrupados para una mejor comprensión:
 \item Desarrollo del módulo actuador. (55 hs)
 	\begin{enumerate}
 	\item Construcción del módulo e integración de componentes, actuador con placa Esp8266. (15 hs)
-	\item Creación del programa de lectura para el microcontrolador. (10 hs)
+	\item Creación del programa para leer datos que llegan de la red.(10 hs)
 	\item Testeo de conexión del módulo a la red y al módulo principal central. (5 hs)
 	\item Testeo y depuración de la recepción y envió de datos al módulo principal en la red local. (5 hs)
 	\item Verificación y formateo de datos capturados de la red para su manipulación y transformación en ordenes de la placa hacia el relé.(10 hs)
 	\item Instalación del módulo en un ambiente determinado para su funcionamiento. (5 hs)
 	\item Realizar un informe resumen de las configuraciones a usar, código fuente e información respecto al formato de recepción de datos. (5 hs)
 	\end{enumerate}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Desarrollo del módulo réplica. (95 hs)
+	\begin{enumerate}
+	\item Creación y configuración del Broker remoto (5 hs)
+	\item Integración del Broker remoto con el módulo principal local para las replicas(10 hs)
+	\item Verificación y testeo de enlace del Broker local con el Broker remoto. (10 hs)
+	\item Creación de la base de datos replica en la nube. (5 hs) 
+	\item Adaptación de la copia de la aplicación web local para su funcionamiento en remoto. (25 hs)
+	\item Configuración para la recepción de datos del Broker remoto hacia la aplicación en nube.  (10 hs)
+	\item Testeo y depuración del funcionamiento de los roles de acceso al sistema. (5 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación web desde el pc del administrador. (10 hs) 
+	\item Testeo y depuración del funcionamiento de la aplicación en diferentes dispositivos portátiles. (10 hs)
+	\item Realizar un informe resumen de las configuraciones a usar y credenciales de acceso a la cuenta de administración. (5 hs)
+	\end{enumerate}	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Verificación y testeo del sistema IOT. (50 hs)
+\item Verificación y testeo del sistema completo. (50 hs)
 	\begin{enumerate}
 	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a Internet (5 hs)
 	\item Verificación y depuración del funcionamiento de los roles de acceso del sistema IOT en un ambiente de red local controlado (laboratorio) con acceso a Internet (5 hs) 
 	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real con acceso a Internet vía red local(5 hs) 
 	\item Verificación y depuración del funcionamiento completo del sistema IOT en un ambiente real sin acceso a Internet vía red local (10 hs) 
-	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil (10 hs)
-	\item Verificación y depuración del funcionamiento completo del sistema replica IOT remoto desde un dispositivo portátil cuando el módulo principal local se desconecta de Internet (10 hs)
+	\item Verificación y depuración del funcionamiento completo del sistema réplica IOT remoto desde un dispositivo portátil (10 hs)
+	\item Verificación y depuración del funcionamiento completo del sistema réplica IOT remoto desde un dispositivo portátil cuando el módulo principal local se desconecta de Internet (10 hs)
 	\item Realizar un informe resumen con las correcciones de las nuevas configuraciones a usar y todas las nuevas consideraciones de funcionamiento. (5 hs)
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -587,197 +591,322 @@ Cantidad total de horas: (610 hs)
 \section{7. Diagrama de Activity On Node}
 \label{sec:AoN}
 
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior. 
+La unidad de tiempo del diagrama AoN que se muestra en la Figura \ref{fig:AoN}  esta expresada en horas.
 
+\begin{table}[ht]
+%\caption{Identificación de los interesados}
+%\label{tab:interesados}
+\begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Descripción        & Secuencia de Tareas    & Tiempo (horas) 	\\ \hline
+Camino crítico 1   & 1 - 2 - 3 - 4 - 5 - 8 - 9 & 515	 \\ \hline
+Camino no crítico  & 1 - 2 - 3 - 4 - 6 - 8 - 9 & 500	 \\ \hline
+Camino crítico 2   & 1 - 2 - 3 - 4 - 7 - 8 - 9 & 515  \\ \hline
+\end{tabularx}
+\end{table}
+Los caminos críticos se muestran con líneas en negrita de color azul y la secuencia de tareas de color celeste.
 %La figura \ref{fig:AoN} fue elaborada con el paquete latex tikz y pueden consultar la siguiente referencia \textit{online}:
 
 %\url{https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_3)\%E2\%80\%94Creating_Flowcharts}
 
-\end{consigna}
+
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
+\includegraphics[width=1.0\textwidth]{./Figuras/AoN.png}
 \caption{Diagrama en \textit{Activity on Node}}
 \label{fig:AoN}
 \end{figure}
-\begin{consigna}{red}
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semicríticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color, como se muestra en el siguiente ejemplo:
-\end{consigna}
+
 
 
 \section{8. Diagrama de Gantt}
 \label{sec:gantt}
 
-\begin{consigna}{red}
-Utilizar el software Gantter for Google Drive o alguno similar para dibujar el diagrama de Gantt.
+%\begin{consigna}{red}
+En las figuras \ref{fig:gantt1},\ref{fig:gantt2} ,\ref{fig:gantt3} ,\ref{fig:gantt4} , se muestra a detalle el diagrama de Gantt del proyecto y en la figura \ref{fig:gantt5} se muestra un resumen del diagrama.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{landscape} % esto es para rotar
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=1.5\textwidth]{./Figuras/gantt01.png}
+\caption{Diagrama de Gantt - Parte 1}
+\label{fig:gantt1}
+\end{figure}
+\end{landscape} % esto es para rotar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{landscape} % esto es para rotar
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=1.5\textwidth]{./Figuras/gantt02.png}
+\caption{Diagrama de Gantt - Parte 2}
+\label{fig:gantt2}
+\end{figure}
+\end{landscape} % esto es para rotar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{landscape} % esto es para rotar
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=1.5\textwidth]{./Figuras/gantt03.png}
+\caption{Diagrama de Gantt - Parte 3}
+\label{fig:gantt3}
+\end{figure}
+\end{landscape} % esto es para rotar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{landscape} % esto es para rotar
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=1.5\textwidth]{./Figuras/gantt04.png}
+\caption{Diagrama de Gantt - Parte 4}
+\label{fig:gantt4}
+\end{figure}
+\end{landscape} % esto es para rotar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Existen muchos programas y recursos \textit{online} para hacer diagramas de gantt, entre las cuales destacamos:
+\begin{landscape} % esto es para rotar
 
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de gantt realizado con el paquete de \textit{pgfgantt}. En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-\begin{figure}[htbp]
-\begin{center}
-\begin{ganttchart}{1}{12}
-  \gantttitle{2020}{12} \\
-  \gantttitlelist{1,...,12}{1} \\
-  \ganttgroup{Group 1}{1}{7} \\
-  \ganttbar{Task 1}{1}{2} \\
-  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
-  \ganttmilestone{Milestone o hito}{7} \ganttnewline
-  \ganttbar{Final Task}{8}{12}
-  \ganttlink{elem2}{elem3}
-  \ganttlink{elem3}{elem4}
-\end{ganttchart}
-\end{center}
-\caption{Diagrama de gantt de ejemplo}
-\label{fig:gantt}
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=1.5\textwidth]{./Figuras/gantt05.png}
+\caption{Diagrama de Gantt resumido - Parte 5}
+\label{fig:gantt5}
 \end{figure}
 
-\end{consigna}
+\end{landscape} % esto es para rotar
+%\end{consigna}
+
 
 \section{9. Matriz de uso de recursos de materiales}
 \label{sec:recursos}
 
-
-\begin{table}
-\label{tab:recursos}
+\begin{table}[ht]
+%\label{tab:recursos}
 \centering
-\begin{tabularx}{\linewidth}{@{}|c|X|X|X|X|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|X|c|c|c|c|@{}}
 \hline
 \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \multicolumn{4}{c|}{\cellcolor[HTML]{C0C0C0}Recursos requeridos (horas)} \\ \cline{3-6} 
-\multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Código\\ WBS\end{tabular}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Nombre \\ tarea\end{tabular}} & Material 1 & Material 2 & Material 3 & Material 4 \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline 
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline 
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
-
+\multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Código\\ WBS\end{tabular}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Nombre \\ tarea\end{tabular}} & Raspberry Pi & Sensores & Laptop & Internet \\ \hline
+ 1& Búsqueda de material bibliográfico & 0 & 0 & 20 & 20 \\ \hline
+ 2 & Adquisición de componentes & 0  & 0 & 10 & 10 \\ \hline
+ 3 & Diseño y configuración de la red local& 5 & 0 & 5 & 5 \\ \hline
+ 4 & Desarrollo del módulo principal & 239 & 0 & 200 & 200 \\ \hline
+ 5 & Desarrollo del módulo de consumo & 0 & 40 & 40 & 30 \\ \hline
+ 6 & Desarrollo del módulo de temperatura & 0 & 30 & 25 & 20 \\ \hline
+ 7 & Desarrollo del módulo actuador & 0 & 40 & 40 & 30 \\ \hline
+ 8 & Desarrollo del modulo réplica & 95 & 95 & 95 & 95 \\ \hline 
+ 9 & Pruebas y depuración del sistema completo & 50 & 50 & 50 & 40 \\ \hline
+ %&  &  &  &  &  \\ \hline
 \end{tabularx}%
 \end{table}
 
 
 \section{10. Presupuesto detallado del proyecto}
 \label{sec:presupuesto}
-
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
-
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
-
-\end{consigna}
-
-\begin{table}[htpb]
+%\begin{table}[htpb]
+\begin{table}[ht]
 \centering
 \begin{tabularx}{\linewidth}{@{}|X|c|r|r|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS DIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}MÓDULO CENTRAL - PRINCIPAL} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
 Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+ Kit Raspberry Pi 4- 8GB & 
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 350} &
+  \multicolumn{1}{c|}{S/ 350} \\ \hline
+ Fuente de poder 5v 3A oficial Raspberry Pi 4B &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 50} &
+  \multicolumn{1}{c|}{S/ 50} \\ \hline
+ Cable micro HDMI - HDMI &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 30} &
+  \multicolumn{1}{c|}{S/ 30} \\ \hline
+  Micro SD Ultra - Clase 10 - 32 Gb &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 35} &
+  \multicolumn{1}{c|}{S/ 35} \\ \hline
+  15.6 Touch Monitor, 1920×1080 Full HD &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 680} &
+  \multicolumn{1}{c|}{S/ 680} \\ \hline
+  Case acrílico &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 150} &
+  \multicolumn{1}{c|}{S/ 150} \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}MÓDULO DE CONSUMO ENERGÉTICO} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Descripción &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
+ Placa ESP8266 &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 30} &
+  \multicolumn{1}{c|}{S/ 30} \\ \hline
+ Fuente de poder 5v – 1A &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 15} &
+  \multicolumn{1}{c|}{S/ 15} \\ \hline
+  Case acrílico&
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 20} &
+  \multicolumn{1}{c|}{S/ 20} \\ \hline
+  Placa de circuito impreso &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 10} &
+  \multicolumn{1}{c|}{S/ 10} \\ \hline
+  Sensor de corriente AC 30A no invasivo &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 40} &
+  \multicolumn{1}{c|}{S/ 40} \\ \hline
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 115} \\ \hline
+\rowcolor[HTML]{C0C0C0}
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 1295} \\ \hline
+  \end{tabularx}%
+\end{table}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+ \begin{table}
+\centering
+\begin{tabularx}{\linewidth}{@{}|X|c|r|r|@{}}
+\hline 
+\rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS DIRECTOS} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}MÓDULO DE MEDICIÓN DE TEMPERATURA} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Descripción &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
+  Placa ESP8266 &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 30} &
+  \multicolumn{1}{c|}{S/ 30} \\ \hline
+  Fuente de poder 5v – 1A &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 15} &
+  \multicolumn{1}{c|}{S/ 15} \\ \hline
+  Case acrílico &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 20} &
+  \multicolumn{1}{c|}{S/ 20} \\ \hline
+  Placa de circuito impreso &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 40} &
+  \multicolumn{1}{c|}{S/ 40} \\ \hline
+  Sensor de temperatura DHT 22 &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 25} &
+  \multicolumn{1}{c|}{S/ 25} \\ \hline
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 100} \\ \hline
+\rowcolor[HTML]{C0C0C0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}MÓDULO ACTUADOR} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Descripción &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
+ Placa ESP8266 &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 30} &
+  \multicolumn{1}{c|}{S/ 25} \\ \hline
+  Fuente de poder 5v – 1A &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 15} &
+  \multicolumn{1}{c|}{S/ 15} \\ \hline
+  Case acrílico &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 20} &
+  \multicolumn{1}{c|}{S/ 20} \\ \hline
+  Placa de circuito impreso &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 10} &
+  \multicolumn{1}{c|}{S/ 10} \\ \hline
+  Módulo Relay 1CH 5V DC &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 10} &
+  \multicolumn{1}{c|}{S/ 10} \\ \hline
+  
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 85} \\ \hline
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \rowcolor[HTML]{C0C0C0} 
+\multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}OTROS GASTOS} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Descripción &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
+ AP 450mbps &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 150} &
+  \multicolumn{1}{c|}{S/ 150} \\ \hline
+  Compra de un plan de hosting + dominio &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 250} &
+  \multicolumn{1}{c|}{S/ 250} \\ \hline
+  Cable dupont macho- macho &
+  \multicolumn{1}{c|}{4 paquetes} &
+  \multicolumn{1}{c|}{S/ 60} &
+  \multicolumn{1}{c|}{S/ 60} \\ \hline
+  
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 460} \\ \hline
+\rowcolor[HTML]{C0C0C0}
+\multicolumn{3}{|r|}{TOTAL} &
+ \multicolumn{1}{c|}{S/ 2055}  \\ \hline   
+
+  \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+45\% respecto a costos directos  &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{S/ 924.75} &
+  \multicolumn{1}{c|}{S/ 924.75} \\ \hline
+
+\multicolumn{3}{|r|}{SUBTOTAL} &
+  \multicolumn{1}{c|}{S/ 924.75} \\ \hline
 \rowcolor[HTML]{C0C0C0}
-\multicolumn{3}{|c|}{TOTAL} &
-   \\ \hline
+\multicolumn{3}{|r|}{TOTAL} &
+\multicolumn{1}{c|}{S/ 2979.75}   \\ \hline
 \end{tabularx}%
 \end{table}
 
 
+\begin{landscape} % esto es para rotar
 \section{11. Matriz de asignación de responsabilidades}
 \label{sec:responsabilidades}
-\begin{consigna}{red}
-Establecer la matriz de asignación de responsabilidades y el manejo de la autoridad completando la siguiente tabla:
+%\begin{consigna}{red}
+
 
 \begin{table}[htpb]
+%\begin{center}
+%\begin{sideways} % rotamos 90° la tabla
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|c|c|}
+\resizebox{1.4\textwidth}{!}{%
+\begin{tabular}{|c|l|c|c|c|c|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \cellcolor[HTML]{C0C0C0} &
@@ -795,32 +924,40 @@ Establecer la matriz de asignación de responsabilidades y el manejo de la autor
   \multirow{-3}{*}{\cellcolor[HTML]{C0C0C0}Nombre de la tarea} &
   \authorname &
   \supname &
-  Nombre de alguien &
+  Leoncio Moya &
   \clientename \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
+ 1& Búsqueda de material bibliográfico & P & C &  &  \\ \hline
+ 2& Adquisición de componentes & P & C & C &  \\ \hline
+ 3&Diseño y configuración de red local & P  & A & S &  \\ \hline
+ 4&Desarrollo del módulo principal & P & A & C & I \\ \hline
+ 5& Desarrollo del módulo de consumo & P  & A &  & C \\ \hline
+ 6& Desarrollo del módulo temperatura & P & A &  & C \\ \hline
+  7& Desarrollo del módulo actuador & P  & A &  & C \\ \hline
+ 8& Desarrollo del módulo réplica & P & A & C & I \\ \hline
+ 9& Verificación y testeo del sistema completo & P & A & C & A \\ \hline
 \end{tabular}%
 }
+%\end{sideways}% para rotación
+%\end{center}
 \end{table}
 
 {\footnotesize
 Referencias:
+
 \begin{itemize}
-	\item P = Responsabilidad Primaria
-	\item S = Responsabilidad Secundaria
-	\item A = Aprobación
-	\item I = Informado
-	\item C = Consultado
+
+	 \item P = Responsabilidad Primaria
+	 \item S = Responsabilidad Secundaria
+	 \item A = Aprobación
+	 \item I = Informado
+	 \item C = Consultado
 \end{itemize}
 } %footnotesize
 
-Una de las columnas debe ser para el Director, ya que se supone que participará en el proyecto.
-A su vez se debe cuidar que no queden muchas tareas seguidas sin ``A'' o ``I''.
+\end{landscape}
 
-Importante: es redundante poner ``I/A'' o ``I/C'', porque para aprobarlo o responder consultas primero la persona debe ser informada.
+%\end{consigna}
 
-\end{consigna}
 
 \section{12. Gestión de riesgos}
 \label{sec:riesgos}
